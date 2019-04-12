@@ -1,0 +1,1 @@
+SELECT * FROM budd_db.seeds;
