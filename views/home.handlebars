@@ -1,0 +1,44 @@
+<div class="container">
+  
+  {{!-- Menu to search for seeds or products for sale or to add items to database --}}
+  <div class="row">
+    <div id="search-menu" class="col">
+      <button id="products-btn">Search Products for Sale</button>
+      <button id="add-product-btn">Add New Product</button>
+      <button id="seeds-btn">Search Seeds</button>
+      <button id="add-seed-btn">Add New Seed</button>
+    </div>
+  </div>
+
+  {{!-- This table will actually come from the partial so it can change based on seed or product --}}
+  <div id="search-result">
+    <table id="admin-table" class="display">
+      <thead>
+        <tr>
+          <th>Strain</th>
+          <th>Type</th>
+          <th>THC %</th>
+          <th>Inventory</th>
+          <th>Packaging</th>
+          <th>Size</th>
+          <th>Unit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Row 1 Data 1</td>
+          <td>Row 1 Data 2</td>
+          <td>Row 1 Data 3</td>
+          <td>Row 1 Data 4</td>
+          <td>Row 1 Data 5</td>
+          <td>Row 1 Data 6</td>
+          <td>Row 1 Data 7</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+{{!-- Javascript needed for datatable built in functions to work --}}
+<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
