@@ -1,3 +1,14 @@
+$(document).ready( function () {
+
+  // this is the function to call for the datatable functionality to work
+  $('#myTable').DataTable();
+
+} );
+
+
+// everything below this line was the starter code
+// ---------------------------------------------------------
+
 // Get references to page elements
 let $exampleText = $("#example-text");
 let $exampleDescription = $("#example-description");

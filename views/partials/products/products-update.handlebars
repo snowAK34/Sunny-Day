@@ -1,0 +1,25 @@
+<div class="item-detail">
+    <h3>Product Details</h3>
+    <p>Strain: {{strain}}</p>
+    {{!-- Need to enter route for product update in action if we decide to post straight from form --}}
+    <form action="#" method="POST">
+    <p>Price: <input name="price" placeholder={{price}}></p>  {{!-- needs to be editable --}}
+    <p>Quantity: <input name="quantity" placeholder={{quantity}}></p>  {{!-- needs to be editable --}}
+    </form>
+    <p>Packaging: {{packaging}}</p>
+    <p>Size &#40grams&#41: {{size}}</p>
+    <p>THC %: {{thc}}</p>
+    <p>CBD %: {{cbd}}</p>
+    <p>Type: {{type}}</p>
+    <p>Strain Type: {{strain_type}}</p>
+    <p>Genetics: {{genetics}}</p>
+    <p>Flavor: {{flavor}}</p>
+    <p>Feelings: {{feelings}}</p>
+    <p>Alleviates: {{alleviates}}</p>
+    <p>Comments: {{comments}}</p>
+</div>
+
+{{!-- Save, Go Back & Remove buttons --}}
+<button id="update-product-btn">Save</button>
+<button id="home-btn">Go Back</button>
+<button id="delete-product-btn">Remove Product From Database</button>
