@@ -3,13 +3,31 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+  {{!-- Materialize CDN --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  {{!-- Datatables CSS CDN --}}
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  {{!-- Google Font link for h1 tag used on business name in banner --}}
+  <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+  {{!-- Google Font open sans for rest of page --}}
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  {{!-- Static CSS stylesheet --}}
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
-  <title>Home Page</title>
+  <title>Sunny Day</title>
 </head>
 
 <body>
+
+{{!-- The Main file has only a nav bar that adds the banner across the top with the business name --}}
+
+  <nav>
+    <div class="nav-wrapper">
+      <h1>Budd's Sunny Day Growers</h1>
+    </div>
+  </nav>
+
   {{{body}}}
+
 </body>
 
 </html>
