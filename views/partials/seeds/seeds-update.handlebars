@@ -1,0 +1,25 @@
+<div class="item-detail">
+    <h3>Seed Details</h3>
+    <p>Strain: {{strain}}</p>
+    <p>Type: {{type}}</p>
+    {{!-- Grabbing this form value by id for update button --}}
+    <form>
+    <p>Quantity: <input id="seed-quantity" placeholder={{quantity}}></p> {{!-- needs to be editable --}}
+    </form>
+    <p>THC %: {{thc}}</p>
+    <p>CBD %: {{cbd}}</p>
+    <p>Strain Type: {{strain_type}}</p>
+    <p>Genetics: {{genetics}}</p>
+    <p>Flavor: {{flavor}}</p>
+    <p>Feelings: {{feelings}}</p>
+    <p>Alleviates: {{alleviates}}</p>
+    <p>Date Received: {{date}}</p>
+    <p>Company Purchased From: {{company}}</p>
+    <p>Comments: {{comments}}</p>
+</div>
+
+
+{{!-- Save, Go Back & Remove buttons --}}
+<button id="update-seed-btn">Save</button>
+<button id="home-btn">Go Back</button>
+<button id="delete-seed-btn">Remove Seed From Database</button>

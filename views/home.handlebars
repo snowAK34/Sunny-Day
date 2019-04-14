@@ -10,33 +10,14 @@
     </div>
   </div>
 
-  {{!-- This table will actually come from the partial so it can change based on seed or product --}}
-  <div id="search-result">
-    <table id="admin-table" class="display">
-      <thead>
-        <tr>
-          <th>Strain</th>
-          <th>Type</th>
-          <th>THC %</th>
-          <th>Inventory</th>
-          <th>Packaging</th>
-          <th>Size</th>
-          <th>Unit</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Row 1 Data 1</td>
-          <td>Row 1 Data 2</td>
-          <td>Row 1 Data 3</td>
-          <td>Row 1 Data 4</td>
-          <td>Row 1 Data 5</td>
-          <td>Row 1 Data 6</td>
-          <td>Row 1 Data 7</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+{{!-- Will load search table from partial based on seed or product --}}
+{{#if seed}}
+  {{> seeds/seeds-search}}
+{{/if}}
+
+{{#if product}}
+  {{> products/products-search}}
+{{/if}}
 
 </div>
 
