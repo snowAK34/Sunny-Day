@@ -1,9 +1,7 @@
-const Sequelize = require("sequelize");
-const db = require("../config/database");
-
+module.exports = (sequelize, DataTypes) => {
 
 //  make models for seeds and products
-const seed = sequelize.define("seed",{
+var seed = sequelize.define("seed",{
 
   strain: {
     type: Sequelize.STRING,
@@ -95,4 +93,4 @@ var product = sequelize.define("product",{
 
 module.exports
 
-
+}
