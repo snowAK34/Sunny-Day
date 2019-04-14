@@ -2,9 +2,9 @@
     <h3>Seed Details</h3>
     <p>Strain: {{strain}}</p>
     <p>Type: {{type}}</p>
-    {{!-- Need to enter route for seed update in action if we decide to post straight from form --}}
-    <form action="#" method="POST">
-    <p>Quantity: <input name="quantity" placeholder={{quantity}}></p> {{!-- needs to be editable --}}
+    {{!-- Grabbing this form value by id for update button --}}
+    <form>
+    <p>Quantity: <input id="seed-quantity" placeholder={{quantity}}></p> {{!-- needs to be editable --}}
     </form>
     <p>THC %: {{thc}}</p>
     <p>CBD %: {{cbd}}</p>

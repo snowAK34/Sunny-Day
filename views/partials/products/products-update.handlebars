@@ -1,10 +1,10 @@
 <div class="item-detail">
     <h3>Product Details</h3>
     <p>Strain: {{strain}}</p>
-    {{!-- Need to enter route for product update in action if we decide to post straight from form --}}
-    <form action="#" method="POST">
-    <p>Price: <input name="price" placeholder={{price}}></p>  {{!-- needs to be editable --}}
-    <p>Quantity: <input name="quantity" placeholder={{quantity}}></p>  {{!-- needs to be editable --}}
+    {{!-- Grabbing these form values by id for update button --}}
+    <form>
+    <p>Price: <input id="price" placeholder={{price}}></p>  {{!-- needs to be editable --}}
+    <p>Quantity: <input id="product-quantity" placeholder={{quantity}}></p>  {{!-- needs to be editable --}}
     </form>
     <p>Packaging: {{packaging}}</p>
     <p>Size &#40grams&#41: {{size}}</p>
