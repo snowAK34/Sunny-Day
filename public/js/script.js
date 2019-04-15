@@ -7,7 +7,7 @@ $(document).ready(function() {
   $("#products-btn").on("click", function(event) {
     // event.preventDefault();
     // console.log('I clicked heres')
-    $.get("/api/products", function(data) {
+    $.get("/api/products/search", function(data) {
       console.log("=====", data)
       $("#products-table").DataTable({
         // populate data packet into table (use object section from docs)

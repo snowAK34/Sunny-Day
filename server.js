@@ -12,11 +12,11 @@ var cookieParser = require('cookie-parser');
 var db = require("./models");
 
 var app = express();
-var PORT = process.env.PORT || 8000;
+var PORT = process.env.PORT || 3000;
 
 app.use(cookieParser());
 app.use(flash());
-app.use(session({ secret: 'keyboard', cookie: { maxAge: 60000 }}))
+// app.use(session({ secret: 'keyboard', cookie: { maxAge: 60000 }}))
 
 
 // db.sequelize.sync({force:true}).then(function() {
