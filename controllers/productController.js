@@ -3,7 +3,7 @@
 var models = require("../models/index")
 var Sequelize = require("sequelize")
 
-var Op = Sequelize.Op
+var Op = Sequelize.Op;
 
 /**
  * @class ProductController
@@ -26,23 +26,23 @@ class ProductController {
         "id",
         "strain",
         "price",
+        "packaging",
         "size",
         "quantity",
+        "thc",
+        "cbd",
         "type",
+        "strain_type",
         "genetics",
         "flavor",
-        "strain_type",
-        "thc",
-        "packaging",
-        "cbd",
         "feelings",
-        "comments",
-        "alleviates"
-
+        "alleviates",
+        "comments"
       ]
     })
     .then( function(product){
       if(product){
+        console.log("product: ", product);
         return res.status(200).json({
           "message": "all product has been fetched successfully",
           "data": product
@@ -50,7 +50,7 @@ class ProductController {
       }
     })
     .catch(function(err){
-      return response.status(500).json({
+      return res.status(500).json({
         status: "FAILED",
         message: "Error processing request, please try again",
         Error: err.toString()
@@ -76,18 +76,19 @@ class ProductController {
         "id",
         "strain",
         "price",
+        "packaging",
         "size",
         "quantity",
+        "thc",
+        "cbd",
         "type",
+        "strain_type",
         "genetics",
         "flavor",
-        "strain_type",
-        "thc",
-        "packaging",
-        "cbd",
         "feelings",
-        "comments",
-        "alleviates"
+        "alleviates",
+        "comments"
+        
       ]
     })
     .then( function(product){
@@ -123,9 +124,9 @@ class ProductController {
 
   static addProduct(req, res){
     var {
-      strain, price, flavor, size, quantity,
-      genetics, type, strain_type, cbd,
-      packaging, thc, alleviates, comments, feelings
+      strain, price, size, quantity, type, cbd,
+      packaging, thc, strain_type, 
+      genetics, flavor, feelings, alleviates, comments
     } = req.body
 
     models.Product.findOrCreate({

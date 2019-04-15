@@ -1,7 +1,7 @@
 body {
   margin: 0;
   box-sizing: border-box;
-  background-image: url(dawn-landscape.jpg);
+  background-image: url(../images/dawn-landscape.jpg);
   background-color: #BED2A0;
   background-size: cover;
   font-family: 'Open Sans', sans-serif;
@@ -58,4 +58,8 @@ h1 {
 #products-btn:hover, #add-product-btn:hover, #seeds-btn:hover, #add-seed-btn:hover {
   background-color: #2D5618;
   color: #B6CD7B;
+}
+
+.add-form {
+  background-color: white;
 }
