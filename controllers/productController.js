@@ -1,7 +1,7 @@
 // module to implement crud for Product
 
-var models = require('../models/index')
-var Sequelize = require('sequelize')
+var models = require("../models/index")
+var Sequelize = require("sequelize")
 
 var Op = Sequelize.Op
 
@@ -20,24 +20,24 @@ class ProductController {
  */
 
   static getAllProduct(req, res) {
-    console.log('I got here')
+    console.log("I got here")
     models.Product.findAll({
       attributes: [
-        'id',
-        'strain',
-        'price',
-        'size',
-        'quantity',
-        'type',
-        'genetics',
-        'flavor',
-        'strain_type',
-        'thc',
-        'packaging',
-        'cbd',
-        'feelings',
-        'comments',
-        'alleviates'
+        "id",
+        "strain",
+        "price",
+        "size",
+        "quantity",
+        "type",
+        "genetics",
+        "flavor",
+        "strain_type",
+        "thc",
+        "packaging",
+        "cbd",
+        "feelings",
+        "comments",
+        "alleviates"
 
       ]
     })
@@ -51,8 +51,8 @@ class ProductController {
     })
     .catch(function(err){
       return response.status(500).json({
-        status: 'FAILED',
-        message: 'Error processing request, please try again',
+        status: "FAILED",
+        message: "Error processing request, please try again",
         Error: err.toString()
       })
     })
@@ -73,26 +73,26 @@ class ProductController {
         "id": productId
       },
       attributes: [
-        'id',
-        'strain',
-        'price',
-        'size',
-        'quantity',
-        'type',
-        'genetics',
-        'flavor',
-        'strain_type',
-        'thc',
-        'packaging',
-        'cbd',
-        'feelings',
-        'comments',
-        'alleviates'
+        "id",
+        "strain",
+        "price",
+        "size",
+        "quantity",
+        "type",
+        "genetics",
+        "flavor",
+        "strain_type",
+        "thc",
+        "packaging",
+        "cbd",
+        "feelings",
+        "comments",
+        "alleviates"
       ]
     })
     .then( function(product){
       if(product){
-        res.render('partials/products/products-update', { product: product, messages: req.flash('info', 'product fetched successfully') });
+        res.render("partials/products/products-update", { product: product, messages: req.flash("info", "product fetched successfully") });
 
         // return res.status(200).json({
         //   "message": "Single product fetched successfully",
@@ -106,8 +106,8 @@ class ProductController {
     })
     .catch(function(err){
       return res.status(500).json({
-        status: 'FAILED',
-        message: 'Error processing request, please try again',
+        status: "FAILED",
+        message: "Error processing request, please try again",
         Error: err.toString()
       })
     })
@@ -144,25 +144,25 @@ class ProductController {
         //   "message": "product already exist",
         //   "status": "Failed"
         // })
-        req.flash('info', 'Product already exists')
-        res.redirect('/home')
+        req.flash("info", "Product already exists")
+        res.redirect("/home")
       } else {
         // res.status(201).json({
         //   "message": "product created successfully",
         //   "status": "Success",
         //   "data": product
         // })
-        req.flash('info', 'A new product has been added')
-        res.redirect('/home')
+        req.flash("info", "A new product has been added")
+        res.redirect("/home")
       }
     }).catch(function(err){
       return res.status(500).json({
-        status: 'FAILED',
-        message: 'Error processing request, please try again',
+        status: "FAILED",
+        message: "Error processing request, please try again",
         Error: err.toString()
       })
-    // request.flash('info', 'Could not create do, please try again')
-    // response.redirect('/create/dog')
+    // request.flash("info", "Could not create do, please try again")
+    // response.redirect("/create/dog")
     });
   }
 
@@ -180,36 +180,36 @@ class ProductController {
         strain : strain
       },
       attributes: [
-        'id',
-        'strain',
-        'price',
-        'size',
-        'quantity',
-        'type',
-        'genetics',
-        'flavor',
-        'strain_type',
-        'thc',
-        'packaging',
-        'cbd',
-        'feelings',
-        'comments',
-        'alleviates'
+        "id",
+        "strain",
+        "price",
+        "size",
+        "quantity",
+        "type",
+        "genetics",
+        "flavor",
+        "strain_type",
+        "thc",
+        "packaging",
+        "cbd",
+        "feelings",
+        "comments",
+        "alleviates"
       ]
     })
     .then( function(product){
       if(product){
         return res.status(200).json({
-          status: 'SUCCESS',
-          message: 'Product Fetched Successfully',
+          status: "SUCCESS",
+          message: "Product Fetched Successfully",
           data: product
         })
       }
     })
     .catch(function(err){
       return res.status(500).json({
-        status: 'FAILED',
-        message: 'Error processing request, please try again',
+        status: "FAILED",
+        message: "Error processing request, please try again",
         Error: err.toString()
       })
     })
@@ -230,14 +230,14 @@ class ProductController {
         id: productId
       },
       attributes: [
-        'id',
-        'strain',
-        'price',
-        'size',
-        'quantity',
-        'type',
-        'genetics',
-        'flavor'
+        "id",
+        "strain",
+        "price",
+        "size",
+        "quantity",
+        "type",
+        "genetics",
+        "flavor"
       ]
     })
     .then(function(foundProduct){
@@ -252,25 +252,25 @@ class ProductController {
           }
         })
         .then(function(updatedProduct){
-          res.render('partials/products/products-update', { product: updatedProduct, messages: req.flash('info', 'product fetched successfully') });
+          res.render("partials/products/products-update", { product: updatedProduct, messages: req.flash("info", "product fetched successfully") });
 
           // return res.status(200).json({
-          //   status: 'SUCCESS',
-          //   message: 'Product has been updated Successfully',
+          //   status: "SUCCESS",
+          //   message: "Product has been updated Successfully",
           //   data: updatedProduct
           // })
         })
       }
       // else {
       //   res.status(404).json({
-      //     message: 'Product not found or has been deleted'
+      //     message: "Product not found or has been deleted"
       //   });
       // }
     })
     .catch(function(err) {
       res.status(500).json({
-        status: 'FAILED',
-        message: 'Error processing request, please try again',
+        status: "FAILED",
+        message: "Error processing request, please try again",
         Error: err.toString()
       });
     });
@@ -289,7 +289,7 @@ static delete(req, res){
     where: {
       id: productId
     },
-    attributes: ['id', 'strain']
+    attributes: ["id", "strain"]
   })
   .then(function(foundProduct){
     if(foundProduct){
@@ -300,22 +300,22 @@ static delete(req, res){
       })
       .then(function (){
         return res.status(200).json({
-            status: 'SUCCESS',
-            message: 'Product deleted successfully'
+            status: "SUCCESS",
+            message: "Product deleted successfully"
           });
         });
     }
     else{
       res.status(404).json({
-        status: 'FAILED',
-        message: 'Product not found or has been deleted'
+        status: "FAILED",
+        message: "Product not found or has been deleted"
       });
     }
   })
   .catch(function(err) {
     res.status(500).json({
-      status: 'FAILED',
-      message: 'Error processing request, please try again',
+      status: "FAILED",
+      message: "Error processing request, please try again",
       Error: err.toString()
     });
   });

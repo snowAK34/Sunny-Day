@@ -10,34 +10,34 @@ module.exports = function(app) {
     });
 
   app.get("/add-product", function(req, res) {
-      req.flash('info', "I gor======= here")
+      req.flash("info", "I gor======= here")
       res.render("partials/products/products-add");
   });
 
   app.get("/update-product/:productId", function(req, res) {
-    // req.flash('info', "I gor======= here")
+    // req.flash("info", "I gor======= here")
     // res.render("partials/products/products-update");
     ProductController.getSingleProduct(req, res)
   });
 
   app.get("/add-seed", function(req, res) {
-    req.flash('info', "I gor======= here")
+    req.flash("info", "I gor======= here")
     res.render("partials/seeds/seeds-add");
   });
 
   app.get("/update-seed/:seedId", function(req, res) {
-    // req.flash('info', "I gor======= here")
+    // req.flash("info", "I gor======= here")
     // res.render("partials/seeds/seeds-update");
     SeedController.getSingleSeed(req, res)
   });
 
   app.get("/search-product", function(req, res) {
-    req.flash('info', "I gor======= here")
+    req.flash("info", "I gor======= here")
     res.render("partials/products/products-search");
   });
 
   app.get("/search-seed", function(req, res) {
-    req.flash('info', "I gor======= here")
+    req.flash("info", "I gor======= here")
     res.render("partials/seeds/seeds-search");
   });
 

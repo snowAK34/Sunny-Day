@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Seed = sequelize.define('Seed', {
+  const Seed = sequelize.define("Seed", {
     strain: {
       type: DataTypes.STRING,
     },

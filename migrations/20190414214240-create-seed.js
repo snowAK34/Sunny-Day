@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 module.exports = {
   //// logic for transforming into the new state
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('seeds', {
+    return queryInterface.createTable("seeds", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -62,6 +62,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('seeds');
+    return queryInterface.dropTable("seeds");
   }
 };

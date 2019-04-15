@@ -7,8 +7,8 @@ var ProductController = require("../controllers/productController");
 var SeedController = require("../controllers/seedController")
 var validateProduct = require("../middlewares/validateProduct");
 
-router.get('/api', (req, res) => {
-  res.send('Welcome to the api')
+router.get("/api", (req, res) => {
+  res.send("Welcome to the api")
 })
 router.post("/api/products", validateProduct, ProductController.addProduct);
 router.get("/api/products", ProductController.getAllProduct);

@@ -3,12 +3,12 @@ var mysql = require("mysql");
 
 if (process.env.JAWSDB_URL){
   connection = mysql.createConnection(process.env.JAWSDB_URL);
-} elsse {
+} else {
   connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'Sunny-Day_db'
+    host: "localhost",
+    user: "root",
+    password: "Jlmyhd60*",
+    database: "Sunny-Day_db"
   })
 }
 

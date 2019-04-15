@@ -38,7 +38,6 @@ CREATE TABLE products (
     feelings VARCHAR(255),
     alleviates  VARCHAR(255),
     comments VARCHAR(255),
-    created_on DATE 
     PRIMARY KEY(id)
 );
 SELECT * FROM products;
