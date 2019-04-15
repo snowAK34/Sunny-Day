@@ -25,7 +25,7 @@ SELECT * FROM seeds;
 CREATE TABLE products (
 	id INT NOT NULL AUTO_INCREMENT,
 	strain VARCHAR(50) NOT NULL,
-	price DECIMAL(13,2),
+	price DECIMAL(10,2),
 	packaging VARCHAR(20),
     size FLOAT(10),
     quantity INT(10),
@@ -38,7 +38,8 @@ CREATE TABLE products (
     feelings VARCHAR(255),
     alleviates  VARCHAR(255),
     comments VARCHAR(255),
-	PRIMARY KEY(id)
+    created_on DATE 
+    PRIMARY KEY(id)
 );
 SELECT * FROM products;
     

@@ -1,24 +1,31 @@
+var express = require("express");
 let db = require("../models");
 
-module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
+var router = express.Router();
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+var ProductController = require("../controllers/productController");
+var SeedController = require("../controllers/seedController")
+var validateProduct = require("../middlewares/validateProduct");
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-};
+router.get('/api', (req, res) => {
+  res.send('Welcome to the api')
+})
+router.post("/api/products", validateProduct, ProductController.addProduct);
+router.get("/api/products", ProductController.getAllProduct);
+router.get("/api/products/:productId", ProductController.getSingleProduct);
+router.get("api/products/search", ProductController.searchProduct);
+router.patch("/api/products/:productId", ProductController.update);
+router.delete("/api/products/:productId", ProductController.delete);
+
+
+router.post("/api/seeds", SeedController.addSeed);
+router.get("/api/seeds", SeedController.getAllSeed);
+router.get("/api/seeds/:seedId", SeedController.getSingleSeed);
+router.get("api/seeds/search", SeedController.searchSeed);
+router.patch("/api/seeds/:seedId", SeedController.update);
+router.delete("/api/seeds/:seedId", SeedController.delete);
+
+
+
+
+module.exports = router;
