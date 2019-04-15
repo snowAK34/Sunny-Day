@@ -3,52 +3,52 @@
 var models = require("../models/index")
 var Sequelize = require("sequelize")
 
-var Op = Sequelize.Op
+var Op = Sequelize.Op;
 
 
-function ProductController() {
+class ProductController {
 
 
-  function getAllProduct(req, res) {
+  static getAllProduct(req, res) {
     console.log("I got here")
     models.Product.findAll({
       attributes: [
         "id",
         "strain",
         "price",
+        "packaging",
         "size",
         "quantity",
+        "thc",
+        "cbd",
         "type",
+        "strain_type",
         "genetics",
         "flavor",
-        "strain_type",
-        "thc",
-        "packaging",
-        "cbd",
         "feelings",
-        "comments",
-        "alleviates"
-
+        "alleviates",
+        "comments"
       ]
     })
-      .then(function (product) {
-        if (product) {
-          return res.status(200).json({
-            "message": "all product has been fetched successfully",
-            "data": product
-          })
-        }
+    .then( function(product){
+      if(product){
+        console.log("product: ", product);
+        // return res.status(200).json({
+        //   "message": "all product has been fetched successfully",
+        //   "data": product
+        // })
+      }
+    })
+    .catch(function(err){
+      return res.status(500).json({
+        status: "FAILED",
+        message: "Error processing request, please try again",
+        Error: err.toString()
       })
-      .catch(function (err) {
-        return response.status(500).json({
-          status: "FAILED",
-          message: "Error processing request, please try again",
-          Error: err.toString()
-        })
-      })
-  }
+  })
+}
 
-  function getSingleProduct(req, res) {
+  static getSingleProduct(req, res) {
     var  productId  = req.params
     models.Product.findOne({
       where: {
@@ -59,18 +59,19 @@ function ProductController() {
         "id",
         "strain",
         "price",
+        "packaging",
         "size",
         "quantity",
-        // "type",
-        // "genetics",
-        // "flavor",
-        // "strain_type",
         "thc",
-        "packaging",
-        // "cbd",
-        // "feelings",
-        // "comments",
-        // "alleviates"
+        "cbd",
+        "type",
+        "strain_type",
+        "genetics",
+        "flavor",
+        "feelings",
+        "alleviates",
+        "comments"
+        
       ]
     })
       .then(function (product) {
@@ -82,10 +83,15 @@ function ProductController() {
           //   "data": product
           // })
         }
+        else{
+          req.flash("info", "The product id does not exist")
+          res.redirect("/home")
+        }
         // return res.status(400).json({
         //   "message": "Product Id does not exist",
         //   "status": "Failed"
         // })
+      
       })
       .catch(function (err) {
         return res.status(500).json({
@@ -96,12 +102,20 @@ function ProductController() {
       })
   }
 
-  function addProduct(req, res) {
-    var data = [
-      strain, price, flavor, size, quantity,
-      genetics, type, strain_type, cbd,
-      packaging, thc, alleviates, comments, feelings
-     ]
+   /**
+   * @static
+   *  Method to add a new product
+   * @param {*} request
+   * @param {*} response
+   * @memberof ProductCOntroller
+   */
+
+  static addProduct(req, res) {
+    var {
+      strain, price, size, quantity, type, cbd,
+      packaging, thc, strain_type, 
+      genetics, flavor, feelings, alleviates, comments
+    } = req.body
 
     models.Product.findOrCreate({
       where: {
@@ -142,7 +156,7 @@ function ProductController() {
   }
 
 
-  function searchProduct(req, res, cb) {
+  static searchProduct(req, res, cb) {
     var { strain } = req.query
     models.Product.findAll({
       //   where: {
@@ -280,5 +294,4 @@ function ProductController() {
         });
     }
   }
-
   module.exports = ProductController
