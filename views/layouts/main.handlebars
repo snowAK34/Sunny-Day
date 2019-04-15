@@ -25,8 +25,19 @@
       <h1>Budd's Sunny Day Growers</h1>
     </div>
   </nav>
+  {{#if messages}}
+      <h3>{{ messages }}</h3>
+  {{/if}}
+
 
   {{{body}}}
+
+  <script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="/js/script.js"></script>
 
 </body>
 
