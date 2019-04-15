@@ -5,10 +5,6 @@ var session = require('express-session')
 var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 
-
-
-
-
 var db = require("./models");
 
 var app = express();
@@ -16,11 +12,11 @@ var PORT = process.env.PORT || 8000;
 
 app.use(cookieParser());
 app.use(flash());
-app.use(session({ secret: 'keyboard', cookie: { maxAge: 60000 }}))
+app.use(session({ secret: 'keyboard', cookie: { maxAge: 60000 } }))
 
 
-// db.sequelize.sync({force:true}).then(function() {
-//   app.listen(PORT, function() {
+// db.sequelize.sync({ force: true }).then(function () {
+//   app.listen(PORT, function () {
 //     console.log("Listening on port %s", PORT)
 //   });
 // });
@@ -54,15 +50,14 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-// Starting the server, syncing our models ------------------------------------/
-// db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+// Starting the server, syncing our models------------------------------------/
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
       PORT
     );
   });
-// });
+});
 
 module.exports = app;
