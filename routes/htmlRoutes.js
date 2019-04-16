@@ -16,12 +16,8 @@ module.exports = function(app) {
       req.flash("info", "I got======= here")
       res.render("partials/products/products-add");
   });
-
-  app.get("/update-product/:productId", function(req, res) {
-    req.flash("info", "I gor======= here")
-    res.render("partials/products/products-update");
-    ProductController.getSingleProduct(req, res)
-  });
+// ===========================================================
+  app.get("/update-product/:productId", ProductController.getSingleProduct);
 
   app.get("/add-seed", function(req, res) {
     req.flash("info", "I got======= here")

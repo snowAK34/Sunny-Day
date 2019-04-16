@@ -168,18 +168,18 @@ class SeedController {
       attributes: [
         "id",
         "strain",
-        "date_rec",
+        // "date_rec",
         "quantity",
         "type",
-        "genetics",
-        "flavor",
-        "strain_type",
+        // "genetics",
+        // "flavor",
+        // "strain_type",
         "thc",
         "cbd",
-        "feelings",
-        "comments",
-        "alleviates",
-        "company"
+        // "feelings",
+        // "comments",
+        // "alleviates",
+        // "company"
       ]
     })
     .then( function(seed){
