@@ -15,11 +15,11 @@ app.use(flash());
 app.use(session({ secret: 'keyboard', cookie: { maxAge: 60000 } }))
 
 
-db.sequelize.sync({ force: true }).then(function () {
-  app.listen(PORT, function () {
-    console.log("Listening on port %s", PORT)
-  });
-});
+// db.sequelize.sync({ force: true }).then(function () {
+//   app.listen(PORT, function () {
+//     console.log("Listening on port %s", PORT)
+//   });
+// });
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -50,15 +50,14 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-// Starting the server, syncing our models ------------------------------------/
-// db.sequelize.sync(syncOptions).then(function() {
-// app.listen(PORT, function () {
-//   console.log(
-//     "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-//     PORT,
-//     PORT
-//   );
-// });
-// });
+// Starting the server, syncing our models------------------------------------/
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
+    console.log(
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      PORT
+    );
+  });
+});
 
 module.exports = app;

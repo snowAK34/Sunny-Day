@@ -7,18 +7,11 @@ $(document).ready(function() {
 
   // Search buttons have the function from datatables library to render data in the search table
   $("#products-btn").on("click", function(event) {
-<<<<<<< HEAD
-    // event.preventDefault();
-    // console.log('I clicked heres')
-    $.get("/api/products/search", function(data) {
-      console.log("=====", data)
-=======
     event.preventDefault();
     console.log('I clicked here')
     $.get("/api/products", function(res) {
       console.log("=====", res)
 
->>>>>>> 4479df585e7aa33d0339aa7dc62b18caec674557
       $("#products-table").DataTable({
         // populate data packet into table (use object section from docs)
         data: res.data,
