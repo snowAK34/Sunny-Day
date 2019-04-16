@@ -5,8 +5,6 @@
     <form action=`/api/products/{{product.id}}`, method=PATCH>
     <p>Price: <input id="price" placeholder={{product.price}} name="price"></p>  {{!-- needs to be editable --}}
     <p>Quantity: <input id="product-quantity" placeholder={{product.quantity}} name="quantity"></p>  {{!-- needs to be editable --}}
-    <button type="submit">Update</button>
-
     </form>
     <p>Packaging: {{product.packaging}}</p>
     <p>Size &#40grams&#41: {{product.size}}</p>
