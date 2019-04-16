@@ -48,7 +48,7 @@ class ProductController {
 }
 
   static getSingleProduct(req, res) {
-    var  productId  = req.params
+    var  productId  = req.params.productId
     models.Product.findOne({
       where: {
         "id": productId
@@ -296,9 +296,8 @@ class ProductController {
           });
         });
     }
-
-
-     delete(req, res);
+    }
+    static delete(req, res){
       const { productId } = req.params;
       models.Product.findOne({
         where: {
@@ -334,6 +333,6 @@ class ProductController {
             Error: err.toString()
           });
         });
-    }
+      }
   }
   module.exports = ProductController
