@@ -42,7 +42,6 @@ class ProductController {
     })
     .then( function(product){
       if(product){
-        console.log("product: ", product);
         return res.status(200).json({
           "message": "all product has been fetched successfully",
           "data": product

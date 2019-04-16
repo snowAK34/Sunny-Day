@@ -33,9 +33,10 @@ h1 {
   padding: 5px;
 }
 
-#search-result {
+.search-result {
     background-color: white;
     border: solid thin #68883B;
+    padding: 10px;
 }
 
 /* 4 buttons that make up menu on home page to search products, seeds, or add either */
