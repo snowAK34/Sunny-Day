@@ -1,5 +1,5 @@
 {
-  "name": "node-handlebars-boilerplate",
+  "name": "handlebars-boilerplate",
   "version": "1.0.0",
   "description": "Project 2 Starter",
   "main": "server.js",
@@ -9,7 +9,7 @@
     "fix": "eslint --fix .",
     "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit",
     "watch": "nodemon server.js",
-    "migrate": "node_modules/.bin/sequelize db:migrate"
+    "migrate": "sequelize db:migrate"
   },
   "license": "ISC",
   "dependencies": {
@@ -30,5 +30,17 @@
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
     "prettier": "^1.13.7"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snowAK34/Sunny-Day.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/snowAK34/Sunny-Day/issues"
+  },
+  "homepage": "https://github.com/snowAK34/Sunny-Day#readme"
 }

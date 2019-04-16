@@ -170,6 +170,49 @@ class ProductController {
         "price",
         "quantity",
         "packaging",
+        "cbd",
+        "feelings",
+        "comments",
+        "alleviates"
+      ]
+    })
+    .then( function(product){
+      if(product){
+        return res.status(200).json({
+          status: "SUCCESS",
+          message: "Product Fetched Successfully",
+          data: product
+        })
+      }
+    })
+    .catch(function(err){
+      return res.status(500).json({
+        status: "FAILED",
+        message: "Error processing request, please try again",
+        Error: err.toString()
+      })
+    })
+  }
+
+  /**
+   * @static
+   * Method to update a  product instance by Id
+   * @param {*} req
+   * @param {*} res
+   * @memberof ProductController
+   */
+  static update(req, res) {
+    console.log(req.body)
+    var { productId } = req.params
+    var {price, quantity} = req.body
+    models.Product.findOne({
+      where :{
+        id: productId
+      },
+      attributes: [
+        "id",
+        "strain",
+        "price",
         "size",
         "thc",
         // "type",
