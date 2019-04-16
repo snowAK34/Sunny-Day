@@ -89,6 +89,8 @@ $(document).ready(function() {
 
   // ------------------------------------------------------------------
   // Update and delete buttons for item detail pages (next 4):
+  // ==================================================================
+  //===================================================================
 
   $("#update-product-btn").on("click", function(event) {
 
@@ -123,6 +125,9 @@ $(document).ready(function() {
       }
     );
   });
+
+  // =========================================================
+  //==========================================================
 
   // Before running functions for last 2 (delete) buttons: a confirm function!
   function confirmDelete() {
