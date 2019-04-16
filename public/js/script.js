@@ -179,34 +179,28 @@ $(document).ready(function() {
 
   $("#delete-product-btn").on("click", function (event) {
     event.preventDefault();
+    let id = $(this).data("id");
     // add confirm before running delete request!!
-    if (confirmDelete) {
+    if (confirmDelete()) {
       // delete method ajax call for updating product in database
-      let queryUrl = "#";
+      let queryUrl = "/api/products/" + id;
       $.ajax(queryUrl, {
         type: "DELETE"
-      }).then(
-        function () {
-        }
-      );
+      }).then(window.location.href="/");
     };
   });
 
   $("#delete-seed-btn").on("click", function (event) {
     event.preventDefault();
+    let id = $(this).data("id");
     // add confirm before running delete request!!
-    if (confirmDelete) {
+    if (confirmDelete()) {
       // delete method ajax call for updating product in database
-      let queryUrl = "#";
+      let queryUrl = "/api/seeds/" + id;
       $.ajax(queryUrl, {
         type: "DELETE"
-      }).then(
-        function () {
-
-        }
-      );
+      }).then(window.location.href="/");
     };
-    window.location
   });
 });
 
