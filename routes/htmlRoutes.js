@@ -42,6 +42,10 @@ module.exports = function(app) {
 
   });
 
+  app.get("/read", function(req, res){
+    res.render("read-content", {layout: "read-frame"});
+  });
+
     app.get("/home", function(req, res) {
       res.render("home", {
         msg: "Welcome!",

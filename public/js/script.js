@@ -3,7 +3,7 @@ $(document).ready(function() {
   $("#products-table").hide();
   $("#seed-search-result").hide();
   $("#seeds-table").hide();
-  
+
   // Button event listeners for routes:
   // ------------------------------------------------------------------
   // Homepage search and add buttons (first 4):
@@ -12,7 +12,7 @@ $(document).ready(function() {
   $("#products-btn").on("click", function (event) {
     event.preventDefault();
     console.log('I clicked here')
-    $.get("/api/products", function(res) {
+    $.get("/api/products", function (res) {
       $("#seed-search-result").hide();
       $("#seeds-table").hide();
       $("#product-search-result").show();
@@ -22,9 +22,10 @@ $(document).ready(function() {
         // populate data packet into table (use object section from docs)
         data: res.data,
         columns: [
-          { data: "id",
-            render: function(data, type, row) {
-              return '<a href="/update-product/'+data+'">'+data+'</a>';
+          {
+            data: "id",
+            render: function (data, type, row) {
+              return '<a href="/update-product/' + data + '">' + data + '</a>';
             }
           },
           { data: "strain" },
@@ -41,20 +42,20 @@ $(document).ready(function() {
 
   $("#seeds-btn").on("click", function (event) {
     event.preventDefault();
-    $.get("/api/seeds", function(res) {
+    $.get("/api/seeds", function (res) {
       $("#product-search-result").hide();
       $("#products-table").hide();
       $("#seed-search-result").show();
       $("#seeds-table").show();
-      
+
       $("#seeds-table").DataTable({
         // populate data packet into table (use object section from docs)
         data: res.data,
         columns: [
-          { 
+          {
             data: "id",
-            render: function(data, type, row) {
-              return '<a href="/update-seed/'+data+'">'+data+'</a>';
+            render: function (data, type, row) {
+              return '<a href="/update-seed/' + data + '">' + data + '</a>';
             }
           },
           { data: "strain" },
@@ -90,14 +91,14 @@ $(document).ready(function() {
 
   // ------------------------------------------------------------------
   // Update and delete buttons for item detail pages (next 4):
-//==============================================================
-// ============================================================
+  //==============================================================
+  // ============================================================
   $("#update-product-btn").on("click", function (event) {
 
     // window.location.assign("/update-product");
     event.preventDefault();
 
-    app.post("api/update/:product"), function(req,res){
+    app.post("api/update/:product"), function (req, res) {
       // let product{};
       product.packaging = req.body.packaging;
       product.size = req.body.size;
@@ -112,15 +113,15 @@ $(document).ready(function() {
       product.comments = req.body.comments;
     }
 
-    let query = {_product:req.params.product}
+    let query = { _product: req.params.product }
 
-    Product.update(query, product, function(err){
-      if(err){
+    Product.update(query, product, function (err) {
+      if (err) {
         console.log(err);
         return;
       } else {
         res.redirect("/");
-      
+
       }
     });
 
@@ -132,16 +133,16 @@ $(document).ready(function() {
     //   type: "PUT"
 
 
-      // data: {
-      //   quantity:quantity,
-      //   price: price  
-      // } 
-  //   }).then(
-  //     function () {
+    // data: {
+    //   quantity:quantity,
+    //   price: price  
+    // } 
+    //   }).then(
+    //     function () {
 
-  //     }
-  //   );
-  // });
+    //     }
+    //   );
+  });
 
   $("#update-seed-btn").on("click", function (event) {
     window.location.assign("/update-seed");
@@ -153,9 +154,9 @@ $(document).ready(function() {
     $.ajax(queryUrl, {
       type: "PUT",
       data: {
-        quantity:quantity,
-        price: price  
-      } 
+        quantity: quantity,
+        price: price
+      }
     }).then(
       function () {
 
@@ -208,4 +209,4 @@ $(document).ready(function() {
     window.location
   });
 });
-})
+

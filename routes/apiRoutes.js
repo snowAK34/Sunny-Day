@@ -23,7 +23,7 @@ router.get("/api/seeds", SeedController.getAllSeed);
 router.get("/api/seeds/:seedId", SeedController.getSingleSeed);
 router.get("api/seeds/search", SeedController.searchSeed);
 router.put("/api/seeds/:seedId", SeedController.update);
-// router.delete("/api/seeds/:seedId", SeedController.delete);
+router.delete("/api/seeds/:seedId", SeedController.delete);
 
 
 
