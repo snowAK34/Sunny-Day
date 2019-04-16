@@ -1,5 +1,9 @@
-$(document).ready(function () {
-
+$(document).ready(function() {
+  $("#product-search-result").hide();
+  $("#products-table").hide();
+  $("#seed-search-result").hide();
+  $("#seeds-table").hide();
+  
   // Button event listeners for routes:
   // ------------------------------------------------------------------
   // Homepage search and add buttons (first 4):
@@ -8,14 +12,21 @@ $(document).ready(function () {
   $("#products-btn").on("click", function (event) {
     event.preventDefault();
     console.log('I clicked here')
-    $.get("/api/products", function (res) {
-      console.log("=====", res)
+    $.get("/api/products", function(res) {
+      $("#seed-search-result").hide();
+      $("#seeds-table").hide();
+      $("#product-search-result").show();
+      $("#products-table").show();
 
       $("#products-table").DataTable({
         // populate data packet into table (use object section from docs)
         data: res.data,
         columns: [
-          { data: "id" },
+          { data: "id",
+            render: function(data, type, row) {
+              return '<a href="/update-product/'+data+'">'+data+'</a>';
+            }
+          },
           { data: "strain" },
           { data: "price" },
           { data: "quantity" },
@@ -30,11 +41,22 @@ $(document).ready(function () {
 
   $("#seeds-btn").on("click", function (event) {
     event.preventDefault();
-    $.get("/home/seed", function (data) {
+    $.get("/api/seeds", function(res) {
+      $("#product-search-result").hide();
+      $("#products-table").hide();
+      $("#seed-search-result").show();
+      $("#seeds-table").show();
+      
       $("#seeds-table").DataTable({
         // populate data packet into table (use object section from docs)
-        data: data,
+        data: res.data,
         columns: [
+          { 
+            data: "id",
+            render: function(data, type, row) {
+              return '<a href="/update-seed/'+data+'">'+data+'</a>';
+            }
+          },
           { data: "strain" },
           { data: "type" },
           { data: "quantity" },
