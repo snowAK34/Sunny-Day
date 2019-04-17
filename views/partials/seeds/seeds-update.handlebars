@@ -20,8 +20,9 @@
     </div>
 
 
-    {{!-- Save, Go Back & Remove buttons --}}
-    <button id="update-seed-btn">Save</button>
-    <button id="home-btn">Go Back</button>
-    <button id="delete-seed-btn" data-id="{{seed.id}}">Remove Seed</button>
-</div>
+{{!-- Update "save" buttons --}}
+<button id="update-seed-btn" data-quantity="{{seed.quantity}}" data-id="{{seed.id}}">Save</button>
+{{!-- Go Back "home" button --}}
+<button id="home-btn">Go Back</button>
+{{!-- Delete button --}}
+<button id="delete-seed-btn">Remove Seed</button>
