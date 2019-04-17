@@ -120,11 +120,11 @@ class ProductController {
       where: {
         strain: strain
       },
-      // defaults:
-      //   strain, price: parseFloat(price), flavor, size, quantity: parseInt(quantity),
-      //   genetics, type, strain_type, cbd,
-      //   packaging, thc, alleviates, comments, feelings]
-    
+      defaults: {
+        strain, price: parseFloat(price), flavor, size, quantity: parseInt(quantity),
+        genetics, type, strain_type, cbd,
+        packaging, thc, alleviates, comments, feelings
+      }
     })
       .spread(function (product, created) {
         if (!created) {
