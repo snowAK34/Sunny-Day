@@ -19,6 +19,10 @@ module.exports = function(app) {
   app.get("/update-product/:productId", ProductController.getSingleProduct);
 //============================================================
 
+// ===========================================================
+  app.put("/update-product/:productId", ProductController.update);
+//============================================================
+
   app.get("/add-seed", function(req, res) {
     res.render("partials/seeds/seeds-add");
   });

@@ -5,7 +5,7 @@
     <form action=`/api/products/{{product.id}}`, method=PATCH>
     <p>Price: <input id="price" placeholder={{product.price}} name="price"></p>  {{!-- needs to be editable --}}
     <p>Quantity: <input id="product-quantity" placeholder={{product.quantity}} name="quantity"></p>  {{!-- needs to be editable --}}
-    <button type="submit">Update</button>
+
 
     </form>
     <p>Packaging: {{product.packaging}}</p>
@@ -22,6 +22,6 @@
 </div>
 
 {{!-- Save, Go Back & Remove buttons --}}
-<button id="update-product-btn">Save</button>
+<button id="update-product-btn" data-price="{{product.price}}" data-quantity="{{product.quantity}}" data-id="{{product.id}}">Save</button>
 <button id="home-btn">Go Back</button>
 <a href="/delete"><button id="delete-product-btn">Remove Product From Database</button></a>

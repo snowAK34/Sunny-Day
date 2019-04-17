@@ -10,6 +10,7 @@ var validateProduct = require("../middlewares/validateProduct");
 router.get("/api", (req, res) => {
   res.send("Welcome to the api")
 })
+
 router.post("/api/products", ProductController.addProduct);
 router.get("/api/products", ProductController.getAllProduct);
 router.get("/api/products/:productId", ProductController.getSingleProduct);
@@ -23,7 +24,7 @@ router.get("/api/seeds", SeedController.getAllSeed);
 router.get("/api/seeds/:seedId", SeedController.getSingleSeed);
 router.get("api/seeds/search", SeedController.searchSeed);
 router.put("/api/seeds/:seedId", SeedController.update);
-// router.delete("/api/seeds/:seedId", SeedController.delete);
+router.delete("/api/seeds/:seedId", SeedController.delete);
 
 
 
