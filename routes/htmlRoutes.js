@@ -1,27 +1,89 @@
 let db = require("../models");
+var ProductController = require("../controllers/productController");
+var SeedController = require("../controllers/seedController");
+var path = require("path");
+var express = require("express");
+var passport = require("../config/passport");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+var router = express.Router();
+// const bcrypt = require("bcrypt");
+// const saltRounds = 10;
 
-module.exports = function(app) {
-  // Load index page
-  app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
-    });
-  });
+router.get("/", function(req, res) {
+  res.render("login");
+});
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
-    });
-  });
+router.post("/", passport.authenticate("local"), function(req, res) {
+  res.redirect("/home");
+});
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
+router.get("/signup", function(req, res) {
+  res.render("signup");
+  // // bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+  // //   if (err) throw err;
+  // // Store hash in your password DB.
+  // db.User.create({
+  //   email: req.body.email,
+  //   password: req.body.password
+  // }).then(function() {
+  //   console.log("complete");
+  // });
+  // res.redirect("/home");
+});
+
+router.get("/", function(req, res) {
+  res.render("login", {
+    msg: "Welcome!"
   });
-};
+});
+
+router.get("/home", isAuthenticated, function(req, res) {
+  res.render("home", {
+    msg: "Welcome!"
+  });
+});
+
+router.get("/add-product", isAuthenticated, function(req, res) {
+  res.render("partials/products/products-add");
+});
+
+// ===========================================================
+router.get(
+  "/update-product/:productId",
+  isAuthenticated,
+  ProductController.getSingleProduct
+);
+//============================================================
+
+router.get("/add-seed", isAuthenticated, function(req, res) {
+  res.render("partials/seeds/seeds-add");
+});
+
+router.get(
+  "/update-seed/:seedId",
+  isAuthenticated,
+  SeedController.getSingleSeed
+);
+
+router.get("/search-product", isAuthenticated, function(req, res) {
+  res.render("partials/products/products-search");
+});
+
+router.get("/search-seed", isAuthenticated, function(req, res) {
+  res.render("partials/seeds/seeds-search");
+});
+
+router.get("/delete-seed/:seedId", isAuthenticated, function(req, res) {
+  SeedController.delete(req, res);
+});
+
+router.get("/read", isAuthenticated, function(req, res) {
+  res.render("read-content", { layout: "read-frame" });
+});
+
+// Render 404 page for any unmatched routes
+router.get("*", function(req, res) {
+  res.render("404");
+});
+
+module.exports = router;

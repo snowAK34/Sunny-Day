@@ -1,0 +1,8 @@
+{{!-- Will load correct add form based on seed or product --}}
+{{#if seed}}
+{{> seeds/seeds-add}}
+{{/if}}
+
+{{#if product}}
+{{> products/products-add}}
+{{/if}}

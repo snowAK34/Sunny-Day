@@ -1,0 +1,74 @@
+<div class="container">
+
+  {{!-- Menu to search for seeds or products for sale or to add items to database --}}
+  <div class="row">
+    <div id="search-menu" class="col">
+      <button id="products-btn">Search Products for Sale</button>
+      <button id="add-product-btn">Add New Product</button>
+      <button id="seeds-btn">Search Seeds</button>
+      <button id="add-seed-btn">Add New Seed</button>
+    </div>
+  </div>
+
+  {{!-- Will load search table from partial based on seed or product --}}
+  {{!-- {{#if seed}}
+  {{> seeds/seeds-search}}
+  {{/if}}
+
+  {{#if product}}
+  {{> products/products-search}}
+{{/if}} --}}
+
+  <div class="search-result" id="product-search-result">
+    <table id="products-table" class="display">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Strain</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Packaging</th>
+          <th>Size &#40gram&#41</th>
+          <th>THC %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Row 1 Data 1</td>
+          <td>Row 1 Data 2</td>
+          <td>Row 1 Data 3</td>
+          <td>Row 1 Data 4</td>
+          <td>Row 1 Data 5</td>
+          <td>Row 1 Data 6</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="search-result" id="seed-search-result">
+    <table id="seeds-table" class="display">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Strain</th>
+          <th>Type</th>
+          <th>Quantity</th>
+          <th>THC %</th>
+          <th>CBD %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Row 1 Data 1</td>
+          <td>Row 1 Data 2</td>
+          <td>Row 1 Data 3</td>
+          <td>Row 1 Data 4</td>
+          <td>Row 1 Data 5</td>
+          <td>Row 1 Data 6</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+{{!-- Javascript links in main.handlebars  --}}

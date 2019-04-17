@@ -1,0 +1,8 @@
+{{!-- Will load item detail page with update options from correct partial if item is seed or product--}}
+{{#if seed}}
+  {{> seeds/seeds-update}}
+{{/if}}
+
+{{#if product}}
+  {{> products/products-update}}
+{{/if}}
