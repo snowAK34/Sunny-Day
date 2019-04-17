@@ -15,6 +15,12 @@ nav {
   font-family: "Merienda", cursive;
 }
 
+#logout-link {
+  float: right;
+  color: white;
+  margin: 10px;
+}
+
 h1 {
   text-shadow: -2px 2px #aeafae;
 }
@@ -41,15 +47,10 @@ h1 {
 }
 
 /* 4 buttons that make up menu on home page to search products, seeds, or add either */
-#products-btn,
-#add-product-btn,
-#seeds-btn,
-#add-seed-btn,
-#read-products-btn,
-#read-seeds-btn {
-  background-color: #bed2a0;
-  color: #3d4c1e;
-  border: solid medium #68883b;
+#products-btn, #add-product-btn, #seeds-btn, #add-seed-btn, #read-products-btn, #read-seeds-btn, #update-product-btn, #delete-product-btn, #update-seed-btn, #delete-seed-btn, .home-btn, .save-btn {
+  background-color: #BED2A0;
+  color: #3D4C1E;
+  border: solid medium #68883B;
   text-align: center;
   padding: 5px;
   box-shadow: 0 4px #68883b;
@@ -57,24 +58,14 @@ h1 {
   margin: 20px auto 20px auto;
 }
 
-#products-btn:active,
-#add-product-btn:active,
-#seeds-btn:active,
-#add-seed-btn:active,
-#read-products-btn:active,
-#read-seeds-btn:active {
+#products-btn:active, #add-product-btn:active, #seeds-btn:active, #add-seed-btn:active, #read-products-btn:active, #read-seeds-btn:active, #update-product-btn:active, #delete-product-btn:active, #update-seed-btn:active, #delete-seed-btn:active, .home-btn:active, .save-btn:active {
   box-shadow: 0 0px;
   transform: translateY(4px);
 }
 
-#products-btn:hover,
-#add-product-btn:hover,
-#seeds-btn:hover,
-#add-seed-btn:hover,
-#read-products-btn:hover,
-#read-seeds-btn:hover {
-  background-color: #2d5618;
-  color: #b6cd7b;
+#products-btn:hover, #add-product-btn:hover, #seeds-btn:hover, #add-seed-btn:hover, #read-products-btn:hover, #read-seeds-btn:hover, #update-product-btn:hover, #delete-product-btn:hover, #update-seed-btn:hover, #delete-seed-btn:hover, .home-btn:hover, .save-btn:hover {
+  background-color: #2D5618;
+  color: #B6CD7B;
 }
 
 .add-form,
