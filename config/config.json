@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "admin",
-    "password": "admin",
-    "database": "passport_project",
+    "username": "root",
+    "password": "iast433g",
+    "database": "budd_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
