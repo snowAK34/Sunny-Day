@@ -120,24 +120,28 @@ $(document).ready(function() {
 
     
 //===============================================================
-  $("#update-seed-btn").on("click", function (event) {
-    
-    event.preventDefault();
-    let quantity = $("#seed-quantity").val().trim();
-    // put method ajax call for updating seed in database
-    let queryUrl = "/api/seeds/:seedId";
-    $.ajax(queryUrl, {
-      type: "PUT",
-      data: {
-        quantity:quantity,
-        price: price  
-      } 
-    }).then(
-      function () {
 
-      }
-    );
-  });
+$(document).on("click", "#update-seed-btn", editSeed)
+
+    function editSeed() {
+    
+    let quantity = $('#seed-quantity').val();    
+    let id = $(this).data("id");
+    
+    let queryUrl = `/update-seed/${id}`;
+  
+    console.log ("quantity= ", quantity);
+    console.log ("ID: ", id);
+
+
+    $.ajax(queryUrl, {
+      method: "PUT",
+      data: {
+        quantity:quantity
+      },
+    })
+  };
+ 
 
   // =========================================================
   //  Delete buttons

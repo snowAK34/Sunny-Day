@@ -27,6 +27,10 @@ module.exports = function(app) {
     res.render("partials/seeds/seeds-add");
   });
 
+  // ===========================================================
+  app.put("/update-seed/:seedId", SeedController.update);
+//============================================================
+
   app.get("/update-seed/:seedId", SeedController.getSingleSeed);
   // , function(req, res) {
   //   res.render("partials/seeds/seeds-update");

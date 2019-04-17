@@ -21,7 +21,9 @@
     <p>Comments: {{product.comments}}</p>
 </div>
 
-{{!-- Save, Go Back & Remove buttons --}}
+{{!-- Update "save" button --}}
 <button id="update-product-btn" data-price="{{product.price}}" data-quantity="{{product.quantity}}" data-id="{{product.id}}">Save</button>
+{{!-- Go Back "home" button --}}
 <button id="home-btn">Go Back</button>
+{{!-- Delete button --}}
 <a href="/delete"><button id="delete-product-btn">Remove Product From Database</button></a>

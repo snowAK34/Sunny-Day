@@ -178,13 +178,9 @@ class ProductController {
     })
   }
 
-  /**
-   * @static
-   * Method to update a  product instance by Id
-   * @param {*} req
-   * @param {*} res
-   * @memberof ProductController
-   */
+  //=====================================================
+  //Update Product
+  //=====================================================
   static update(req, res) {
     console.log(req.body)
     var { productId } = req.params
@@ -208,7 +204,7 @@ class ProductController {
             })
           });
         }
-        // cb(data);
+        
       })
       .catch(function (err) {
         console.log('failed update', err);
