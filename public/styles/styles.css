@@ -61,6 +61,8 @@ h1 {
   color: #B6CD7B;
 }
 
-.add-form, .item-detail {
+.add-form, .item-detail, #login-form, #signup-form {
   background-color: white;
+  padding: 10px;
+  margin: 20px;
 }
