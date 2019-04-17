@@ -1,0 +1,29 @@
+<div class="container">
+  
+  {{!-- Menu to search for seeds or products for sale or to add items to database --}}
+  <div class="row">
+    <div id="search-menu" class="col">
+      <button id="products-btn">Search Products for Sale</button>
+      <button id="add-product-btn">Add New Product</button>
+      <button id="seeds-btn">Search Seeds</button>
+      <button id="add-seed-btn">Add New Seed</button>
+    </div>
+  </div>
+
+{{!-- Will load search table from partial based on seed or product --}}
+{{#if seed}}
+  {{> seeds/seeds-search}}
+{{/if}}
+
+{{#if product}}
+  {{> products/products-search}}
+{{/if}}
+
+</div>
+
+{{!-- Javascript needed for datatable built in functions to work  --}}
+ <script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>

@@ -24,7 +24,7 @@ h1 {
   justify-content: center;
 }
 
-#search-menu {
+#search-menu, #read-search-menu {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -40,7 +40,7 @@ h1 {
 }
 
 /* 4 buttons that make up menu on home page to search products, seeds, or add either */
-#products-btn, #add-product-btn, #seeds-btn, #add-seed-btn {
+#products-btn, #add-product-btn, #seeds-btn, #add-seed-btn, #read-products-btn, #read-seeds-btn {
   background-color: #BED2A0;
   color: #3D4C1E;
   border: solid medium #68883B;
@@ -51,16 +51,18 @@ h1 {
   margin: 20px auto 20px auto;
 }
 
-#products-btn:active, #add-product-btn:active, #seeds-btn:active, #add-seed-btn:active {
+#products-btn:active, #add-product-btn:active, #seeds-btn:active, #add-seed-btn:active, #read-products-btn:active, #read-seeds-btn:active {
   box-shadow: 0 0px;
   transform: translateY(4px);
 }
 
-#products-btn:hover, #add-product-btn:hover, #seeds-btn:hover, #add-seed-btn:hover {
+#products-btn:hover, #add-product-btn:hover, #seeds-btn:hover, #add-seed-btn:hover, #read-products-btn:hover, #read-seeds-btn:hover {
   background-color: #2D5618;
   color: #B6CD7B;
 }
 
-.add-form {
+.add-form, .item-detail, #login-form, #signup-form {
   background-color: white;
+  padding: 10px;
+  margin: 20px;
 }

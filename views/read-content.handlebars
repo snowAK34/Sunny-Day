@@ -1,18 +1,16 @@
 <div class="container">
-
+  
   {{!-- Menu to search for seeds or products for sale or to add items to database --}}
   <div class="row">
-    <div id="search-menu" class="col">
-      <button id="products-btn">Search Products for Sale</button>
-      <button id="add-product-btn">Add New Product</button>
-      <button id="seeds-btn">Search Seeds</button>
-      <button id="add-seed-btn">Add New Seed</button>
+    <div id="read-search-menu" class="col">
+      <button id="read-products-btn">Search Products for Sale</button>
+      <button id="read-seeds-btn">Search Seeds</button>
     </div>
   </div>
 
 
-  <div class="search-result" id="product-search-result">
-    <table id="products-table" class="display">
+  <div class="search-result" id="product-read-result">
+    <table id="products-read-table" class="display">
       <thead>
         <tr>
           <th>ID</th>
@@ -36,8 +34,8 @@
       </tbody>
     </table>
   </div>
-  <div class="search-result" id="seed-search-result">
-    <table id="seeds-table" class="display">
+  <div class="search-result" id="seed-read-result">
+    <table id="seeds-read-table" class="display">
       <thead>
         <tr>
           <th>ID</th>
@@ -62,5 +60,3 @@
   </div>
 
 </div>
-
-{{!-- Javascript links in main.handlebars  --}}

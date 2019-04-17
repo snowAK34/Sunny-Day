@@ -18,35 +18,23 @@
 
 <body>
 
-  {{!-- The Main file has only a nav bar that adds the banner across the top with the business name --}}
+{{!-- The Main file has only a nav bar that adds the banner across the top with the business name --}}
 
   <nav>
     <div class="nav-wrapper">
       <h1>Budd's Sunny Day Growers</h1>
-
     </div>
   </nav>
-  <a class="navbar-brand logout" href="/logout">
-    Logout
-  </a>
 
 
   {{{body}}}
 
   {{!-- JQuery  --}}
-  <script src="https://code.jquery.com/jquery-3.4.0.min.js"
-    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
   {{!-- Javascript needed for datatables function --}}
   <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   {{!-- Front end JS file in public folder --}}
-
-  <script> $(".logout").click(function () {
-      console.log("WORKING")
-      $.get("/logout")
-    }
-    )</script>
-
-  <script src="/js/script.js"></script>
+  <script src="/js/read.js"></script>
 
 </body>
 

@@ -1,29 +1,31 @@
-<div class="item-detail">
-    <h3>Product Details</h3>
-    <p>Strain: {{product.strain}}</p>
-    {{!-- Grabbing these form values by id for update button --}}
-    <form action=`/api/products/{{product.id}}`, method=PATCH>
-    <p>Price: <input id="price" placeholder={{product.price}} name="price"></p>  {{!-- needs to be editable --}}
-    <p>Quantity: <input id="product-quantity" placeholder={{product.quantity}} name="quantity"></p>  {{!-- needs to be editable --}}
+<div class="container">
+    <div class="item-detail">
+        <h3>Product Details</h3>
+        <p>Strain: {{product.strain}}</p>
+        {{!-- Grabbing these form values by id for update button --}}
+        <form action=`/api/products/{{product.id}}`, method=PATCH>
+            <p>Price: <input id="price" placeholder={{product.price}} name="price"></p> {{!-- needs to be editable --}}
+            <p>Quantity: <input id="product-quantity" placeholder={{product.quantity}} name="quantity"></p>
+            {{!-- needs to be editable --}}
+        </form>
+        <p>Packaging: {{product.packaging}}</p>
+        <p>Size &#40grams&#41: {{product.size}}</p>
+        <p>THC %: {{product.thc}}</p>
+        <p>CBD %: {{product.cbd}}</p>
+        <p>Type: {{product.type}}</p>
+        <p>Strain Type: {{product.strain_type}}</p>
+        <p>Genetics: {{product.genetics}}</p>
+        <p>Flavor: {{product.flavor}}</p>
+        <p>Feelings: {{product.feelings}}</p>
+        <p>Alleviates: {{product.alleviates}}</p>
+        <p>Comments: {{product.comments}}</p>
+    </div>
 
-
-    </form>
-    <p>Packaging: {{product.packaging}}</p>
-    <p>Size &#40grams&#41: {{product.size}}</p>
-    <p>THC %: {{product.thc}}</p>
-    <p>CBD %: {{product.cbd}}</p>
-    <p>Type: {{product.type}}</p>
-    <p>Strain Type: {{product.strain_type}}</p>
-    <p>Genetics: {{product.genetics}}</p>
-    <p>Flavor: {{product.flavor}}</p>
-    <p>Feelings: {{product.feelings}}</p>
-    <p>Alleviates: {{product.alleviates}}</p>
-    <p>Comments: {{product.comments}}</p>
-</div>
-
+   
 {{!-- Update "save" button --}}
 <button id="update-product-btn" data-price="{{product.price}}" data-quantity="{{product.quantity}}" data-id="{{product.id}}">Save</button>
 {{!-- Go Back "home" button --}}
 <button id="home-btn">Go Back</button>
 {{!-- Delete button --}}
-<a href="/delete"><button id="delete-product-btn">Remove Product From Database</button></a>
+<button id="delete-product-btn">Remove Product From Database</button>
+</div>

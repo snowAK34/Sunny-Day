@@ -3,7 +3,7 @@ $(document).ready(function() {
   $("#products-table").hide();
   $("#seed-search-result").hide();
   $("#seeds-table").hide();
-  
+
   // Button event listeners for routes:
   // ------------------------------------------------------------------
   // Homepage search and add buttons (first 4):
@@ -12,7 +12,7 @@ $(document).ready(function() {
   $("#products-btn").on("click", function (event) {
     event.preventDefault();
     console.log('I clicked here')
-    $.get("/api/products", function(res) {
+    $.get("/api/products", function (res) {
       $("#seed-search-result").hide();
       $("#seeds-table").hide();
       $("#product-search-result").show();
@@ -22,9 +22,10 @@ $(document).ready(function() {
         // populate data packet into table (use object section from docs)
         data: res.data,
         columns: [
-          { data: "id",
-            render: function(data, type, row) {
-              return '<a href="/update-product/'+data+'">'+data+'</a>';
+          {
+            data: "id",
+            render: function (data, type, row) {
+              return '<a href="/update-product/' + data + '">' + data + '</a>';
             }
           },
           { data: "strain" },
@@ -41,20 +42,20 @@ $(document).ready(function() {
 
   $("#seeds-btn").on("click", function (event) {
     event.preventDefault();
-    $.get("/api/seeds", function(res) {
+    $.get("/api/seeds", function (res) {
       $("#product-search-result").hide();
       $("#products-table").hide();
       $("#seed-search-result").show();
       $("#seeds-table").show();
-      
+
       $("#seeds-table").DataTable({
         // populate data packet into table (use object section from docs)
         data: res.data,
         columns: [
-          { 
+          {
             data: "id",
-            render: function(data, type, row) {
-              return '<a href="/update-seed/'+data+'">'+data+'</a>';
+            render: function (data, type, row) {
+              return '<a href="/update-seed/' + data + '">' + data + '</a>';
             }
           },
           { data: "strain" },
@@ -102,7 +103,7 @@ $(document).ready(function() {
     let quantity = $('#product-quantity').val();    
     let id = $(this).data("id");
     
-    let queryUrl = `/update-product/${id}`;
+    let queryUrl = `/api/products/${id}`;
   
     console.log ("price= ", price)
     console.log ("quantity= ", quantity);
@@ -128,7 +129,7 @@ $(document).on("click", "#update-seed-btn", editSeed)
     let quantity = $('#seed-quantity').val();    
     let id = $(this).data("id");
     
-    let queryUrl = `/update-seed/${id}`;
+    let queryUrl = `/api/seeds/${id}`;
   
     console.log ("quantity= ", quantity);
     console.log ("ID: ", id);
@@ -159,34 +160,28 @@ $(document).on("click", "#update-seed-btn", editSeed)
 
   $("#delete-product-btn").on("click", function (event) {
     event.preventDefault();
+    let id = $(this).data("id");
     // add confirm before running delete request!!
-    if (confirmDelete) {
+    if (confirmDelete()) {
       // delete method ajax call for updating product in database
-      let queryUrl = "#";
+      let queryUrl = "/api/products/" + id;
       $.ajax(queryUrl, {
         type: "DELETE"
-      }).then(
-        function () {
-        }
-      );
+      }).then(window.location.href="/");
     };
   });
 
   $("#delete-seed-btn").on("click", function (event) {
     event.preventDefault();
+    let id = $(this).data("id");
     // add confirm before running delete request!!
-    if (confirmDelete) {
+    if (confirmDelete()) {
       // delete method ajax call for updating product in database
-      let queryUrl = "#";
+      let queryUrl = "/api/seeds/" + id;
       $.ajax(queryUrl, {
         type: "DELETE"
-      }).then(
-        function () {
-
-        }
-      );
+      }).then(window.location.href="/");
     };
-    window.location
   });
 });
 
