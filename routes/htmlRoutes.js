@@ -1,59 +1,89 @@
 let db = require("../models");
+var ProductController = require("../controllers/productController");
+var SeedController = require("../controllers/seedController");
+var path = require("path");
+var express = require("express");
+var passport = require("../config/passport");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+var router = express.Router();
+// const bcrypt = require("bcrypt");
+// const saltRounds = 10;
 
-var ProductController = require("../controllers/productController")
+router.get("/", function(req, res) {
+  res.render("login");
+});
 
-var SeedController = require("../controllers/seedController")
+router.post("/", passport.authenticate("local"), function(req, res) {
+  res.redirect("/home");
+});
 
-module.exports = function(app) {
-  // Load index page
-  app.get("/", function(req, res) {
-      res.render("home", {
-        msg: "Welcome!",
-      });
-    });
+router.get("/signup", function(req, res) {
+  res.render("signup");
+  // // bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+  // //   if (err) throw err;
+  // // Store hash in your password DB.
+  // db.User.create({
+  //   email: req.body.email,
+  //   password: req.body.password
+  // }).then(function() {
+  //   console.log("complete");
+  // });
+  // res.redirect("/home");
+});
 
-  app.get("/add-product", function(req, res) {
-      res.render("partials/products/products-add");
+router.get("/", function(req, res) {
+  res.render("login", {
+    msg: "Welcome!"
   });
+});
+
+router.get("/home", isAuthenticated, function(req, res) {
+  res.render("home", {
+    msg: "Welcome!"
+  });
+});
+
+router.get("/add-product", isAuthenticated, function(req, res) {
+  res.render("partials/products/products-add");
+});
+
 // ===========================================================
-  app.get("/update-product/:productId", ProductController.getSingleProduct);
+router.get(
+  "/update-product/:productId",
+  isAuthenticated,
+  ProductController.getSingleProduct
+);
 //============================================================
 
-  app.get("/add-seed", function(req, res) {
-    res.render("partials/seeds/seeds-add");
-  });
+router.get("/add-seed", isAuthenticated, function(req, res) {
+  res.render("partials/seeds/seeds-add");
+});
 
-  app.get("/update-seed/:seedId", SeedController.getSingleSeed);
-  // , function(req, res) {
-  //   res.render("partials/seeds/seeds-update");
-  //   SeedController.getSingleSeed(req, res)
-  // });
+router.get(
+  "/update-seed/:seedId",
+  isAuthenticated,
+  SeedController.getSingleSeed
+);
 
-  app.get("/search-product", function(req, res) {
-    res.render("partials/products/products-search");
-  });
+router.get("/search-product", isAuthenticated, function(req, res) {
+  res.render("partials/products/products-search");
+});
 
-  app.get("/search-seed", function(req, res) {
-    res.render("partials/seeds/seeds-search");
-  });
+router.get("/search-seed", isAuthenticated, function(req, res) {
+  res.render("partials/seeds/seeds-search");
+});
 
-  app.get("/delete-seed/:seedId", function(req, res) {
-    SeedController.delete(req, res)
+router.get("/delete-seed/:seedId", isAuthenticated, function(req, res) {
+  SeedController.delete(req, res);
+});
 
-  });
+router.get("/read", isAuthenticated, function(req, res) {
+  res.render("read-content", { layout: "read-frame" });
+});
 
-  app.get("/read", function(req, res){
-    res.render("read-content", {layout: "read-frame"});
-  });
+// Render 404 page for any unmatched routes
+router.get("*", function(req, res) {
+  res.render("404");
+});
 
-    app.get("/home", function(req, res) {
-      res.render("home", {
-        msg: "Welcome!",
-      });
-    });
-
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
-};
+module.exports = router;
