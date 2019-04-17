@@ -5,13 +5,13 @@ var session = require("express-session");
 var flash = require("connect-flash");
 var cookieParser = require("cookie-parser");
 var passport = require("./config/passport");
-var routes = require("./routes/index");
 var db = require("./models");
 var app = express();
 var PORT = process.env.PORT || 8000;
 
 app.use(cookieParser());
 app.use(flash());
+
 // app.use(session({ secret: "keyboard", cookie: { maxAge: 6000000 } }));
 
 // Middleware
@@ -28,10 +28,6 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Routes
-//Api Routes
-var apiRoutes = require("./routes/apiRoutes");
-
 // We need to use sessions to keep track of our user's login status
 app.use(
   session({
@@ -44,8 +40,11 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
 app.use(apiRoutes);
-app.use(routes);
+app.use(htmlRoutes);
 
 let syncOptions = { force: false };
 
@@ -56,17 +55,13 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-// db.sequelize.sync(syncOptions).then(function() {
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
       PORT
     );
   });
 });
-
-// });
 
 module.exports = app;

@@ -5,13 +5,10 @@ if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
   connection = mysql.createConnection({
-    host: "localhost"
-    // user: "root",
-    // password: "Jlmyhd60*",
-    // database: "Sunny-Day_db"
-    // user: "admin",
-    // password: "admin",
-    // database: "passport_project"
+    host: "localhost",
+    user: "root",
+    password: "iast433r",
+    database: "Sunny-Day_db"
   });
 }
 
