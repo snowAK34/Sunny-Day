@@ -186,7 +186,7 @@ $(document).ready(function() {
       let queryUrl = "/api/products/" + id;
       $.ajax(queryUrl, {
         type: "DELETE"
-      }).then(window.location.href="/");
+      }).then(window.location.href="/home");
     };
   });
 
@@ -199,7 +199,7 @@ $(document).ready(function() {
       let queryUrl = "/api/seeds/" + id;
       $.ajax(queryUrl, {
         type: "DELETE"
-      }).then(window.location.href="/");
+      }).then(window.location.href="/home");
     };
   });
 });
