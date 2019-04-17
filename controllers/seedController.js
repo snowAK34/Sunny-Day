@@ -1,4 +1,4 @@
-// module to implement crud for Product
+// module to implement crud for Seed
 
 var models = require("../models/index")
 var Sequelize = require("sequelize")
@@ -154,10 +154,10 @@ class SeedController {
 
    /**
  * @static
- * Method to search for product
+ * Method to search for Seed
  * @param {*} req
  * @param {*} res
- * @memberof ProductController
+ * @memberof SeedController
  */
   static searchSeed(req, res){
     var { strain } = req.query
@@ -199,70 +199,156 @@ class SeedController {
       })
     })
   }
-
-  /**
-   * @static
-   * Method to update a  product instance by Id
-   * @param {*} req
-   * @param {*} res
-   * @memberof ProductController
-   */
+//===================================================================
+//  Update Seed
+// ==================================================================
   static update(req, res) {
+    console.log(req.body)
     var { seedId } = req.params
-    var {quantity} = req.body
-    models.Seed.findOne({
-      where :{
-        id: seedId
-      },
-      attributes: [
-        "id",
-        "strain",
-        "date_rec",
-        "quantity",
-        "type",
-        "genetics",
-        "flavor",
-        "strain_type",
-        "thc",
-        "cbd",
-        "feelings",
-        "comments",
-        "alleviates",
-        "company"
-      ]
-    })
-    .then(function(foundSeed){
-      if(foundSeed){
-        const value = {
-          quantity: quantity || foundSeed.quantity,
-        }
-        foundSeed.update(value, {
-          where:{
-            id: foundSeed.dataValues.id
-          }
-        })
-        .then(function(updatedSeed){
-          return res.status(200).json({
-            status: "SUCCESS",
-            message: "Seed has been updated Successfully",
-            data: updatedSeed
+    var { quantity } = req.body
+    console.log('seedId', seedId);
+    console.log('quantity', quantity);
+    models.Seed.findOne({where :{ id: seedId } })
+      .then(function (seed) {
+        console.log('update success');
+        if (seed) {
+          console.log('found seed', seed);
+          seed.update({
+            quantity: quantity
           })
+          .then(function () {
+            return res.status(200).json({
+              status: "SUCCESS",
+              message: "Seed Updated Successfully"
+            })
+          });
+        }
+      
+      })
+      .catch(function (err) {
+        console.log('failed update', err);
+        return res.status(500).json({
+          status: "FAILED",
+          message: "Error processing request, please try again",
+          Error: err.toString()
         })
-      }
-      else {
-        res.status(404).json({
-          message: "Seed not found or has been deleted"
+      })
+
+
+    function update(req, res) {
+      var { seedId } = req.params
+      var { quantity } = req.body
+      models.Seed.findOne({
+        where: {
+          id: seedId
+        },
+        attributes: [
+          "id",
+          "strain",
+          "price",
+          "size",
+          "quantity",
+          "type",
+          "genetics",
+          "flavor"
+        ]
+      })
+        .then(function (foundSeed) {
+          if (foundSeed) {
+            const value = {
+              quantity: quantity || foundSeed.quantity,
+            }
+            foundSeed.update(value, {
+              where: {
+                id: foundSeed.dataValues.id
+              }
+            })
+              .then(function (updatedSeed) {
+                res.render("partials/seeds/seeds-update", { seed: updatedSeed, messages: req.flash("info", "product updated successfully") });
+
+                // return res.status(200).json({
+                //   status: "SUCCESS",
+                //   message: "Product has been updated Successfully",
+                //   data: updatedProduct
+                // })
+              })
+          }
+          // else {
+          //   res.status(404).json({
+          //     message: "Product not found or has been deleted"
+          //   });
+          // }
+        })
+        .catch(function (err) {
+          res.status(500).json({
+            status: "FAILED",
+            message: "Error processing request, please try again",
+            Error: err.toString()
+          });
         });
-      }
-    })
-    .catch(function(err) {
-      res.status(500).json({
-        status: "FAILED",
-        message: "Error processing request, please try again",
-        Error: err.toString()
-      });
-    });
-  }
+    }
+    }
+
+// ==============================================================================
+  /**
+   *Update Seed Inventory
+  //  */
+  // static update(req, res) {
+  //   var { seedId } = req.params
+  //   var {quantity} = req.body
+  //   models.Seed.findOne({
+  //     where :{
+  //       id: seedId
+  //     },
+  //     attributes: [
+  //       "id",
+  //       "strain",
+  //       "date_rec",
+  //       "quantity",
+  //       "type",
+  //       "genetics",
+  //       "flavor",
+  //       "strain_type",
+  //       "thc",
+  //       "cbd",
+  //       "feelings",
+  //       "comments",
+  //       "alleviates",
+  //       "company"
+  //     ]
+  //   })
+  //   .then(function(foundSeed){
+  //     if(foundSeed){
+  //       const value = {
+  //         quantity: quantity || foundSeed.quantity,
+  //       }
+  //       foundSeed.update(value, {
+  //         where:{
+  //           id: foundSeed.dataValues.id
+  //         }
+  //       })
+  //       .then(function(updatedSeed){
+  //         return res.status(200).json({
+  //           status: "SUCCESS",
+  //           message: "Seed has been updated Successfully",
+  //           data: updatedSeed
+  //         })
+  //       })
+  //     }
+  //     else {
+  //       res.status(404).json({
+  //         message: "Seed not found or has been deleted"
+  //       });
+  //     }
+  //   })
+  //   .catch(function(err) {
+  //     res.status(500).json({
+  //       status: "FAILED",
+  //       message: "Error processing request, please try again",
+  //       Error: err.toString()
+  //     });
+  //   });
+  // }
 
   /**
  * @static

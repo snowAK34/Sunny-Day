@@ -65,6 +65,13 @@ router.get(
   SeedController.getSingleSeed
 );
 
+// ========================================================================
+// ===========================================================
+
+router.put("/update-product/:productId");
+router.put("/update-seed/:seedId");
+
+//==========================================================================
 router.get("/search-product", isAuthenticated, function(req, res) {
   res.render("partials/products/products-search");
 });
