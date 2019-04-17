@@ -116,7 +116,7 @@ $(document).ready(function() {
         price:price,
         quantity:quantity
       },
-    })
+    }).then(window.location.href="/home");
   };
 
     
@@ -140,7 +140,7 @@ $(document).on("click", "#update-seed-btn", editSeed)
       data: {
         quantity:quantity
       },
-    })
+    }).then(window.location.href="/home");
   };
  
 

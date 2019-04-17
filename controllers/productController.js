@@ -128,18 +128,9 @@ class ProductController {
     })
       .spread(function (product, created) {
         if (!created) {
-          res.status(409).json({
-            "message": "product already exist",
-            "status": "Failed"
-          })
           req.flash("info", "Product already exists")
           res.redirect("/home")
         } else {
-          res.status(201).json({
-            "message": "product created successfully",
-            "status": "Success",
-            "data": product
-          })
           req.flash("info", "A new product has been added")
           res.redirect("/home")
         }
