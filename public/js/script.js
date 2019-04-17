@@ -83,7 +83,7 @@ $(document).ready(function() {
   });
 
   // Return to homepage button; used on both update-del pages
-  $("#home-btn").on("click", function (event) {
+  $(".home-btn").on("click", function (event) {
     event.preventDefault();
     // route to home.handlebars
     window.location.assign("/home");
