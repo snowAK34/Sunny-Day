@@ -128,18 +128,9 @@ class ProductController {
     })
       .spread(function (product, created) {
         if (!created) {
-          // res.status(409).json({
-          //   "message": "product already exist",
-          //   "status": "Failed"
-          // })
           req.flash("info", "Product already exists")
           res.redirect("/home")
         } else {
-          // res.status(201).json({
-          //   "message": "product created successfully",
-          //   "status": "Success",
-          //   "data": product
-          // })
           req.flash("info", "A new product has been added")
           res.redirect("/home")
         }
@@ -149,33 +140,18 @@ class ProductController {
           message: "Error processing request, please try again",
           Error: err.toString()
         })
-        // request.flash("info", "Could not create do, please try again")
-        // response.redirect("/create/dog")
       });
   }
 
 
   static searchProduct(req, res, cb) {
     var { strain } = req.query
-    models.Product.findAll({
-      //   where: {
-      //     strain : strain
-      //   },
-      // SELECT id, strain, price, size, quantity, thc, packaging FROM products,
 
-      attributes: [
-        "id",
-        "strain",
-        "price",
-        "quantity",
-        "packaging",
-        "cbd",
-        "feelings",
-        "comments",
-        "alleviates"
-      ]
-    })
-    .then( function(product){
+    Model.findAll({
+      attributes: ['id', 'strain', 'price', 'quantity', 'packaging', 'cbd', 'feelings', 'comments', 'alleviates']
+    });
+   
+    ( function(product){
       if(product){
         return res.status(200).json({
           status: "SUCCESS",
@@ -193,48 +169,36 @@ class ProductController {
     })
   }
 
-  /**
-   * @static
-   * Method to update a  product instance by Id
-   * @param {*} req
-   * @param {*} res
-   * @memberof ProductController
-   */
+  //=====================================================
+  //Update Product
+  //=====================================================
   static update(req, res) {
     console.log(req.body)
     var { productId } = req.params
     var {price, quantity} = req.body
-    models.Product.findOne({
-      where :{
-        id: productId
-      },
-      attributes: [
-        "id",
-        "strain",
-        "price",
-        "size",
-        "thc",
-        // "type",
-        // "genetics",
-        // "flavor",
-        // "strain_type",
-        // "cbd",
-        // "feelings",
-        // "comments",
-        // "alleviates"
-      ]
-    })
+    console.log('productId', productId);
+    console.log('price', price);
+    console.log('quantity', quantity);
+    models.Product.findOne({where :{ id: productId } })
       .then(function (product) {
+        console.log('update success');
         if (product) {
-          return res.status(200).json({
-            status: "SUCCESS",
-            message: "Product Fetched Successfully",
-            data: product
+          console.log('found productuct', product);
+          product.update({
+            price: price,
+            quantity: quantity
           })
+          .then(function () {
+            return res.status(200).json({
+              status: "SUCCESS",
+              message: "Product Updated Successfully"
+            })
+          });
         }
-        cb(data);
+        
       })
       .catch(function (err) {
+        console.log('failed update', err);
         return res.status(500).json({
           status: "FAILED",
           message: "Error processing request, please try again",
