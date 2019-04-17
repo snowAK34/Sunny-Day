@@ -19,13 +19,15 @@
         <p>Feelings: {{product.feelings}}</p>
         <p>Alleviates: {{product.alleviates}}</p>
         <p>Comments: {{product.comments}}</p>
-    </div>
 
-   
-{{!-- Update "save" button --}}
-<button id="update-product-btn" data-price="{{product.price}}" data-quantity="{{product.quantity}}" data-id="{{product.id}}">Save</button>
-{{!-- Go Back "home" button --}}
-<button id="home-btn">Go Back</button>
-{{!-- Delete button --}}
-<button id="delete-product-btn" data-id="{{product.id}}">Remove Product From Database</button>
+
+
+        {{!-- Update "save" button --}}
+        <button id="update-product-btn" data-price="{{product.price}}" data-quantity="{{product.quantity}}"
+            data-id="{{product.id}}">Save</button>
+        {{!-- Go Back "home" button --}}
+        <button class="home-btn">Go Back</button>
+        {{!-- Delete button --}}
+        <button id="delete-product-btn" data-id="{{product.id}}">Remove Product From Database</button>
+    </div>
 </div>
