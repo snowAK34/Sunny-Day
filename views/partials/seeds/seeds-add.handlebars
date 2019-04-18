@@ -4,7 +4,7 @@
         {{!-- Need to add route for create product in form action --}}
         <form action="/api/seeds" method="POST">
             <label>Strain: </label>
-            <input type="text" name="strain">
+            <input type="text" name="strain" required>
             <label>Type: </label>
             <input type="text" name="type">
             <label>Quantity: </label>
@@ -29,7 +29,7 @@
             <input type="text" name="company">
             <label>Comments: </label>
             <input type="text" name="comments">
-            <input type="submit" value="Save"><button id="home-btn">Go Back</button>
+            <input type="submit" class="save-btn" value="Save"><button class="home-btn">Go Back</button>
         </form>
     </div>
 </div>

@@ -11,17 +11,17 @@
 
     <form action="/api/products" method="POST">
       <label>Strain: </label>
-      <input type="text" name="strain">
+      <input type="text" name="strain" required>
       <label>Price: </label>
-      <input type="number" step="0.01" name="price">
+      <input type="number" step="0.01" name="price" required>
       <label>Quantity: </label>
-      <input type="text" name="packaging">
+      <input type="text" name="quantity" required>
       <label>Size &#40grams&#41: </label>
       <input type="text" name="size">
       <label>THC %: </label>
-      <input type="number" name="quantity">
-      <label>Packaging: </label>
       <input type="text" name="thc">
+      <label>Packaging: </label>
+      <input type="text" name="packaging">
       <label>CBD %: </label>
       <input type="text" name="cbd">
       <label>Type: </label>
@@ -38,7 +38,7 @@
       <input type="text" name="alleviates">
       <label>Comments: </label>
       <input type="text" name="comments">
-      <input type="submit" value="Save"><button id="home-btn">Go Back</button>
+      <input type="submit" class="save-btn" value="Save"><button class="home-btn">Go Back</button>
     </form>
   </div>
 </div>
