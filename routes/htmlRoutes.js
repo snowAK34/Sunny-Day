@@ -17,18 +17,8 @@ router.post("/", passport.authenticate("local"), function(req, res) {
   res.redirect("/home");
 });
 
-router.get("/signup", function(req, res) {
+router.get("/signup", isAuthenticated, function(req, res) {
   res.render("signup");
-  // // bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-  // //   if (err) throw err;
-  // // Store hash in your password DB.
-  // db.User.create({
-  //   email: req.body.email,
-  //   password: req.body.password
-  // }).then(function() {
-  //   console.log("complete");
-  // });
-  // res.redirect("/home");
 });
 
 router.get("/", function(req, res) {
