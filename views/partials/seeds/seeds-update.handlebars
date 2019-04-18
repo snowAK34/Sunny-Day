@@ -17,12 +17,15 @@
         <p>Date Received: {{seed.date_rec}}</p>
         <p>Company Purchased From: {{seed.company}}</p>
         <p>Comments: {{seed.comments}}</p>
+
+
+
+        {{!-- Update "save" buttons --}}
+        <button id="update-seed-btn" data-quantity="{{seed.quantity}}" data-id="{{seed.id}}">Save</button>
+        {{!-- Go Back "home" button --}}
+        <button class="home-btn">Go Back</button>
+        {{!-- Delete button --}}
+        <button id="delete-seed-btn" data-id="{{seed.id}}">Remove Seed from Database</button>
+
     </div>
-
-
-{{!-- Update "save" buttons --}}
-<button id="update-seed-btn" data-quantity="{{seed.quantity}}" data-id="{{seed.id}}">Save</button>
-{{!-- Go Back "home" button --}}
-<button id="home-btn">Go Back</button>
-{{!-- Delete button --}}
-<button id="delete-seed-btn" data-id="{{seed.id}}">Remove Seed from Database</button>
+</div>
