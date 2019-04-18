@@ -118,18 +118,52 @@ The code is broken into the following CONTROLLER main functions:
 
 ### What was learned: ###
 
-
-
 ## Authentication Design ##
-Bret???
+This code is responsible for all the pages behind the root, the landing page which we currently set as the login page. Authentication on the app allows Sunny Day Growers data to be protected while allowing them to securely update their inventory and have it in an easily digestible format handled by the dashboard. Their data allows updates that then can be displayed realtime to external customers. All pages that relate to the API and database require authentication which means a non-authenticated user cannot hit their API, make changes to the database, or access protected pages.
+
 ### Functionality ### 
-Entry Points - 
+PassportJS has been set up to create a user table in our database through sequelize with the an email column and a password column (the password is stored as an encrypted string). A user is set up via the signup page which is itself is a page requiring a user to be authenticated to access, this prevents non-authenticated users from creating user accounts and accessing the database while allowing Sunny Day Growers a non-technical user friendly way to create users in their database as needed.
 
-### API Details ***
+The signup page checks if the user exists, and if not, stores the user information in the database as a new entry. 
 
-### What was learned:###
+The entry point to the app as stated is our root route "/" set to the login page. The user logs in with their pre-set login email and password which has been set up in the database. The local strategy allows us to authenticate users by looking up their data in the app's database, moving them to the protected routes if successfully authenticated.
+
+When the user submits the login form a POST request is made resulting in the execution of the passport middleware set up. Passport then takes the username (in our case email), and password and passes it for verication.
+
+As the authenticate middleware for that route is configured to handle the local strategy, passport will invoke our implementation of the local strategy, if there is a match, the user gets to proceed if not then an error is invoked. 
+
+The user then can access pages that require authentication through the middleware which finds the serialized user uer object in the session and any request made to the pages or API will be considered authenticated.
+
+Upon logout, the user is un-authenticated and is required to login to access authenticated pages.
+
+### API Details ###
+
+Authentication flow:
+1. User submits login form a POST request is sent resulting in execution of passport.authenticate middleware set up.
+2. As the authenticate middleware for that route is configured to handle the local strategy, passport will invoke our implementation of the local strategy (local strategy is a module that lets you authenticate using a username and password in Node.js applications).
+3. Passport takes the req.body.username and req.body.password and passes it to the verification function in the local strategy.
+4. The user is then checked against a user in the database and if the password given matches the one in the database. 
+5. If there is an error interacting with the database, need to invoke done(error). When user cannot be found or password does not match, invoke done(null, false). If everything is good, user can login then invoke done(null, user).
+6. Calling done will make the flow jump back into passport.authenticate, if user is passed the middleware will call req.login.
+7. This req.login will then call our passport.serializeUser method. This method can access the user object passed back to the middleware. The job of this is to determine what data from the user object should be stored in the session. The result of the serializeUser method is attached to the session as req.session.passport.user
+8. Once done, the requestHandler is invoked and the user is redirected to the /home page, dashboard.
+
+Subsequent authenticated requests flow:
+1. Express loads the session data and attaches it to the req. As passport stores the serialised user in the session, the serialised user object can be found at req.session.passport.user.
+2. The passport middleware we setup (passport.initialize) is invoked on the request, it finds the passport.user attached to the session. If is doesn't (user is not yet authenticated) it creates it like req.passport.user = {}.
+3. Next, passport.session is invoked. This middleware is a Passport Strategy invoked on every request. If it finds a serialised user object in the session, it will consider this request authenticated.
+4. The passport.session middleware calls passport.deserializeUser we've setup. Attaching the loaded user object to the request as req.user.
+
+Rundown of Passport methods and Middleware:
+1. passport.initialize middleware is invoked on every request. It ensures the session contains a passport.user object, which may be empty.
+2. passport.session middleware is a Passport Strategy which will load the user object onto req.user if a serialised user object was found in the server.
+3. passport.deserializeUser is invoked on every request by passport.session. It enables the load of additional user information on every request. This user object is attached to the request as req.user making it accessible in request handling.
+4. Local Strategy is only invoked on the route which uses the passport.authenticate middleware.
+5. Only during this authentication passport.serializeUser is invoked allowing to specify what user information should be stored in the session.
+
+### What was learned: ###
 * The ability to incorporate Passport authentication to a project protecting the remaining application web pages from unathorized access. 
-
+* Ability to set values for authentication, ability to scale: setting different permissions like user vs superusers, resticted access based on "role". 
 
 # Takeaway
 The application is functional as built and meets the initial MVP specified by Sunny Day Growers. More work needs to be done to support/add wholesalers views including checkout and payment.
@@ -143,4 +177,4 @@ We would like to incorporate:
 - Checkout/Cart views need to be added, supporting payment method.
 - Email and/or database notification once an order has been placed by wholesalers.
 - Logging in with the incorrect password is unhandled,displays blank/error page.
-- 
+- Password reset with mongoose, nodemailer, and MongoDB.
