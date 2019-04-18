@@ -93,7 +93,6 @@ h1 {
 }
 
 .fade {
-  color: white;
-  background-color: black !important;
+  opacity: 0.5;
   font-style: italic;
 }
