@@ -154,7 +154,7 @@ Rundown of Passport methods and Middleware:
 4. Local Strategy is only invoked on the route which uses the passport.authenticate middleware.
 5. Only during this authentication passport.serializeUser is invoked allowing to specify what user information should be stored in the session.
 
-### What was learned:###
+### What was learned: ###
 * The ability to incorporate Passport authentication to a project protecting the remaining application web pages from unathorized access. 
 * Ability to set values for authentication, ability to scale: setting different permissions like user vs superusers, resticted access based on "role". 
 
