@@ -34,7 +34,6 @@ app.use(
     secret: "asjndbewjiujknajd83",
     resave: false,
     saveUninitialized: false
-    // cookie: { secure: true }
   })
 );
 
