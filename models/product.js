@@ -4,10 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     strain: {
       type: DataTypes.STRING,
     },
-    price:{
-      type: DataTypes.FLOAT(10,2),
+    price: {
+      type: DataTypes.FLOAT(10, 2),
     },
-    packaging:{
+    packaging: {
       type: DataTypes.STRING,
     },
     size: {
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
   }, {});
-  Product.associate = function(models) {
+  Product.associate = function (models) {
     // associations can be defined here
   };
   return Product;

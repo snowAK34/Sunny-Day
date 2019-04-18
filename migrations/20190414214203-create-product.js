@@ -22,10 +22,10 @@ module.exports = {
       strain: {
         type: Sequelize.STRING,
       },
-      price:{
-        type: Sequelize.FLOAT(10,2),
+      price: {
+        type: Sequelize.FLOAT(10, 2),
       },
-      packaging:{
+      packaging: {
         type: Sequelize.STRING,
       },
       size: {
@@ -61,7 +61,7 @@ module.exports = {
       comments: {
         type: Sequelize.STRING,
       },
-  
+
     });
   },
   down: (queryInterface, Sequelize) => {

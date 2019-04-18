@@ -1,10 +1,10 @@
-$(document).ready(function() {
+$(document).ready(function () {
   $("#product-search-result").hide();
   $("#products-table").hide();
   $("#seed-search-result").hide();
   $("#seeds-table").hide();
 
-  $.get("/api/products", function(res) {
+  $.get("/api/products", function (res) {
     $("#products-table").DataTable({
       createdRow: function(row, data, dataIndex) {
         // adding pink to row if qty is low
@@ -20,7 +20,7 @@ $(document).ready(function() {
       columns: [
         {
           data: "id",
-          render: function(data, type, row) {
+          render: function (data, type, row) {
             return '<a href="/update-product/' + data + '">' + data + "</a>";
           }
         },
@@ -37,7 +37,7 @@ $(document).ready(function() {
     });
   });
 
-  $.get("/api/seeds", function(res) {
+  $.get("/api/seeds", function (res) {
     $("#seeds-table").DataTable({
       // adding pink to row if qty is low
       createdRow: function(row, data, dataIndex) {
@@ -53,7 +53,7 @@ $(document).ready(function() {
       columns: [
         {
           data: "id",
-          render: function(data, type, row) {
+          render: function (data, type, row) {
             return '<a href="/update-seed/' + data + '">' + data + "</a>";
           }
         },
@@ -70,7 +70,7 @@ $(document).ready(function() {
   // Homepage search and add buttons (first 4):
 
   // Search buttons have the function from datatables library to render data in the search table
-  $("#products-btn").on("click", function(event) {
+  $("#products-btn").on("click", function (event) {
     event.preventDefault();
     $("#seed-search-result").hide();
     $("#seeds-table").hide();
@@ -78,7 +78,7 @@ $(document).ready(function() {
     $("#products-table").show();
   });
 
-  $("#seeds-btn").on("click", function(event) {
+  $("#seeds-btn").on("click", function (event) {
     event.preventDefault();
     $("#product-search-result").hide();
     $("#products-table").hide();
@@ -86,14 +86,14 @@ $(document).ready(function() {
     $("#seeds-table").show();
   });
 
-  $("#add-product-btn").on("click", function(event) {
+  $("#add-product-btn").on("click", function (event) {
     console.log("i got here");
     event.preventDefault();
     // routes to add.handlebars with form to add product
     window.location.assign("/add-product");
   });
 
-  $("#add-seed-btn").on("click", function(event) {
+  $("#add-seed-btn").on("click", function (event) {
     event.preventDefault();
     // routes to add.handlebars with form to add seed
     window.location.assign("/add-seed");
@@ -106,39 +106,44 @@ $(document).ready(function() {
     window.location.assign("/home");
   });
 
-  // ------------------------------------------------------------------
-  // Update  buttons for item detail pages
+
   //==============================================================
-  // ============================================================
+  // Updating product information
+  //==============================================================
   //Adding event listeners
-  $(document).on("click", "#update-product-btn", editProd);
-  // event.preventDefault();
+  $(document).on("click", "#update-product-btn", editProd)
 
   function editProd() {
+    // set variables
     let price = $("#price").val();
     let quantity = $("#product-quantity").val();
     let id = $(this).data("id");
 
     let queryUrl = `/api/products/${id}`;
 
-    console.log("price= ", price);
+    console.log("price= ", price)
     console.log("quantity= ", quantity);
     console.log("ID: ", id);
-
+    // AJAX to query url and put data into the database
     $.ajax(queryUrl, {
       method: "PUT",
       data: {
         price: price,
         quantity: quantity
-      }
-    }).then((window.location.href = "/home"));
-  }
+      },
+      //redirect to the home page
+    }).then(window.location.href = "/home");
+  };
 
-  //===============================================================
+  //==============================================================
+  // Updating seed information
+  //==============================================================
+  //Adding event listeners
 
-  $(document).on("click", "#update-seed-btn", editSeed);
+  $(document).on("click", "#update-seed-btn", editSeed)
 
   function editSeed() {
+    // set variables
     let quantity = $("#seed-quantity").val();
     let id = $(this).data("id");
 
@@ -146,14 +151,17 @@ $(document).ready(function() {
 
     console.log("quantity= ", quantity);
     console.log("ID: ", id);
-
+    // AJAX to query url and put data into the database
     $.ajax(queryUrl, {
       method: "PUT",
       data: {
         quantity: quantity
-      }
-    }).then((window.location.href = "/home"));
-  }
+      },
+
+    })
+      //redirect to the home page
+      .then(window.location.href = "/home");
+  };
 
   // =========================================================
   //  Delete buttons
@@ -171,7 +179,7 @@ $(document).ready(function() {
     }
   }
 
-  $("#delete-product-btn").on("click", function(event) {
+  $("#delete-product-btn").on("click", function (event) {
     event.preventDefault();
     let id = $(this).data("id");
     // add confirm before running delete request!!
@@ -180,11 +188,11 @@ $(document).ready(function() {
       let queryUrl = "/api/products/" + id;
       $.ajax(queryUrl, {
         type: "DELETE"
-      }).then((window.location.href = "/home"));
-    }
+      }).then(window.location.href = "/home");
+    };
   });
 
-  $("#delete-seed-btn").on("click", function(event) {
+  $("#delete-seed-btn").on("click", function (event) {
     event.preventDefault();
     let id = $(this).data("id");
     // add confirm before running delete request!!
@@ -193,7 +201,7 @@ $(document).ready(function() {
       let queryUrl = "/api/seeds/" + id;
       $.ajax(queryUrl, {
         type: "DELETE"
-      }).then((window.location.href = "/home"));
-    }
+      }).then(window.location.href = "/home");
+    };
   });
 });
