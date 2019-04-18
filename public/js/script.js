@@ -1,13 +1,17 @@
 $(document).ready(function () {
+  // hide tables and containing divs on page load
   $("#product-search-result").hide();
   $("#products-table").hide();
   $("#seed-search-result").hide();
   $("#seeds-table").hide();
 
+  // initial searches are run when page is loaded to avoid datatables reinitialization errors
+  // ajax get call to grab product information
   $.get("/api/products", function (res) {
+    // populate datatable with product information
     $("#products-table").DataTable({
-      createdRow: function(row, data, dataIndex) {
-        // adding pink to row if qty is low
+      // flags low inventory (pink if quantity below 50, faded italics at 0)
+      createdRow: function (row, data, dataIndex) {
         if (data.quantity < 50 && data.quantity > 0) {
           $(row).addClass("addpink");
           // made italic and half opacity if inentory is equal to 0 or less than 0
@@ -15,19 +19,21 @@ $(document).ready(function () {
           $(row).addClass("fade");
         }
       },
-      // populate data packet into table (use object section from docs)
+      // populate data packet into table (used data object section from datatable docs)
       data: res.data,
       columns: [
         {
           data: "id",
+          // creates link to product detail page on item id
           render: function (data, type, row) {
             return '<a href="/update-product/' + data + '">' + data + "</a>";
           }
         },
         { data: "strain" },
         {
-          data: "price",
-          render: $.fn.dataTable.render.number(",", ".", 2, "$")
+          data: 'price',
+          // formats price into currency format with $ and two decimal places (and commas if big enough)
+          render: $.fn.dataTable.render.number(',', '.', 2, '$')
         },
         { data: "quantity" },
         { data: "packaging" },
@@ -37,10 +43,11 @@ $(document).ready(function () {
     });
   });
 
+  // ajax call to grab seed information
   $.get("/api/seeds", function (res) {
     $("#seeds-table").DataTable({
-      // adding pink to row if qty is low
-      createdRow: function(row, data, dataIndex) {
+      // adding red to row if qty is low
+      createdRow: function (row, data, dataIndex) {
         if (data.quantity < 6 && data.quantity > 0) {
           $(row).addClass("addpink");
           // made italic and half opacity if inentory is equal to 0 or less than 0
@@ -48,11 +55,12 @@ $(document).ready(function () {
           $(row).addClass("fade");
         }
       },
-      // populate data packet into table (use object section from docs)
+      // populate data packet into table (used data object section from datatables docs)
       data: res.data,
       columns: [
         {
           data: "id",
+          // creates link on item id to go to item detail page for update/delete
           render: function (data, type, row) {
             return '<a href="/update-seed/' + data + '">' + data + "</a>";
           }
@@ -69,7 +77,7 @@ $(document).ready(function () {
   // ------------------------------------------------------------------
   // Homepage search and add buttons (first 4):
 
-  // Search buttons have the function from datatables library to render data in the search table
+  // Search buttons show or hide appropriate tables on button click
   $("#products-btn").on("click", function (event) {
     event.preventDefault();
     $("#seed-search-result").hide();
@@ -86,6 +94,7 @@ $(document).ready(function () {
     $("#seeds-table").show();
   });
 
+  // directs to form page for adding a new product
   $("#add-product-btn").on("click", function (event) {
     console.log("i got here");
     event.preventDefault();
@@ -93,6 +102,7 @@ $(document).ready(function () {
     window.location.assign("/add-product");
   });
 
+  // directs to form page for adding a new seed
   $("#add-seed-btn").on("click", function (event) {
     event.preventDefault();
     // routes to add.handlebars with form to add seed
@@ -100,30 +110,27 @@ $(document).ready(function () {
   });
 
   // Return to homepage button; used on both update-del pages
-  $(".home-btn").on("click", function(event) {
+  $(".home-btn").on("click", function (event) {
     event.preventDefault();
     // route to home.handlebars
     window.location.assign("/home");
   });
 
-
+  // ------------------------------------------------------------------
+  // Update  buttons for item detail pages
   //==============================================================
-  // Updating product information
-  //==============================================================
+  // ============================================================
   //Adding event listeners
   $(document).on("click", "#update-product-btn", editProd)
 
   function editProd() {
-    // set variables
-    let price = $("#price").val();
-    let quantity = $("#product-quantity").val();
+
+    let price = $('#price').val();
+    let quantity = $('#product-quantity').val();
     let id = $(this).data("id");
 
     let queryUrl = `/api/products/${id}`;
 
-    console.log("price= ", price)
-    console.log("quantity= ", quantity);
-    console.log("ID: ", id);
     // AJAX to query url and put data into the database
     $.ajax(queryUrl, {
       method: "PUT",
@@ -131,37 +138,30 @@ $(document).ready(function () {
         price: price,
         quantity: quantity
       },
-      //redirect to the home page
     }).then(window.location.href = "/home");
   };
 
-  //==============================================================
-  // Updating seed information
-  //==============================================================
-  //Adding event listeners
+
+  //===============================================================
 
   $(document).on("click", "#update-seed-btn", editSeed)
 
   function editSeed() {
-    // set variables
-    let quantity = $("#seed-quantity").val();
+
+    let quantity = $('#seed-quantity').val();
     let id = $(this).data("id");
 
     let queryUrl = `/api/seeds/${id}`;
 
-    console.log("quantity= ", quantity);
-    console.log("ID: ", id);
     // AJAX to query url and put data into the database
     $.ajax(queryUrl, {
       method: "PUT",
       data: {
         quantity: quantity
       },
-
-    })
-      //redirect to the home page
-      .then(window.location.href = "/home");
+    }).then(window.location.href = "/home");
   };
+
 
   // =========================================================
   //  Delete buttons
