@@ -6,8 +6,6 @@ var express = require("express");
 var passport = require("../config/passport");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 var router = express.Router();
-// const bcrypt = require("bcrypt");
-// const saltRounds = 10;
 
 router.get("/", function(req, res) {
   res.render("login");

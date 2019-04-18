@@ -12,7 +12,7 @@ router.post("/", passport.authenticate("local"), function(req, res) {
 });
 
 // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-// how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
+// how we configured our Sequelize User Model. If the user is created successfully, proceed to home page,
 // otherwise send back an error
 router.post("/api/signup", isAuthenticated, function(req, res) {
   db.User.create({
@@ -21,7 +21,7 @@ router.post("/api/signup", isAuthenticated, function(req, res) {
   })
     .then(function() {
       console.log("WORKS");
-      res.redirect("/");
+      res.redirect("/home");
     })
     .catch(function(err) {
       console.log(err);
@@ -37,7 +37,7 @@ router.get("/logout", function(req, res) {
 });
 
 // Route for getting some data about our user to be used client side
-router.get("/api/user_data", function(req, res) {
+router.get("/api/user_data", isAuthenticated, function(req, res) {
   if (!req.user) {
     // The user is not logged in, send back an empty object
     res.json({});
