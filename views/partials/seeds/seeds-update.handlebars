@@ -1,25 +1,31 @@
-<div class="item-detail">
-    <h3>Seed Details</h3>
-    <p>Strain: {{seed.strain}}</p>
-    <p>Type: {{seed.type}}</p>
-    {{!-- Grabbing this form value by id for update button --}}
-    <form>
-    <p>Quantity: <input id="seed-quantity" placeholder={{seed.quantity}}></p> {{!-- needs to be editable --}}
-    </form>
-    <p>THC %: {{seed.thc}}</p>
-    <p>CBD %: {{seed.cbd}}</p>
-    <p>Strain Type: {{seed.strain_type}}</p>
-    <p>Genetics: {{seed.genetics}}</p>
-    <p>Flavor: {{seed.flavor}}</p>
-    <p>Feelings: {{seed.feelings}}</p>
-    <p>Alleviates: {{seed.alleviates}}</p>
-    <p>Date Received: {{seed.date_rec}}</p>
-    <p>Company Purchased From: {{seed.company}}</p>
-    <p>Comments: {{seed.comments}}</p>
+<div class="container">
+    <div class="item-detail">
+        <h3>Seed Details</h3>
+        <p>Strain: {{seed.strain}}</p>
+        <p>Type: {{seed.type}}</p>
+        {{!-- Grabbing this form value by id for update button --}}
+        <form>
+            <p>Quantity: <input id="seed-quantity" placeholder={{seed.quantity}}></p> {{!-- needs to be editable --}}
+        </form>
+        <p>THC %: {{seed.thc}}</p>
+        <p>CBD %: {{seed.cbd}}</p>
+        <p>Strain Type: {{seed.strain_type}}</p>
+        <p>Genetics: {{seed.genetics}}</p>
+        <p>Flavor: {{seed.flavor}}</p>
+        <p>Feelings: {{seed.feelings}}</p>
+        <p>Alleviates: {{seed.alleviates}}</p>
+        <p>Date Received: {{seed.date_rec}}</p>
+        <p>Company Purchased From: {{seed.company}}</p>
+        <p>Comments: {{seed.comments}}</p>
+
+
+
+        {{!-- Update "save" buttons --}}
+        <button id="update-seed-btn" data-quantity="{{seed.quantity}}" data-id="{{seed.id}}">Save</button>
+        {{!-- Go Back "home" button --}}
+        <button class="home-btn">Go Back</button>
+        {{!-- Delete button --}}
+        <button id="delete-seed-btn" data-id="{{seed.id}}">Remove Seed from Database</button>
+
+    </div>
 </div>
-
-
-{{!-- Save, Go Back & Remove buttons --}}
-<button id="update-seed-btn">Save</button>
-<button id="home-btn">Go Back</button>
-<button id="delete-seed-btn">Remove Seed</button>

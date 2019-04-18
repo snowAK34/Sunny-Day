@@ -1,42 +1,44 @@
-<div class="add-form">
-<h3>New Product:</h3>
-{{messages}}
-{{#if messages}}
+<div class="container">
+  <div class="add-form">
+    <h3>New Product:</h3>
     {{messages}}
-  {{/if}}
-{{message}}
-{{locals.message}}
-{{!-- Need to add route for create product in form action --}}
+    {{#if messages}}
+    {{messages}}
+    {{/if}}
+    {{message}}
+    {{locals.message}}
+    {{!-- Need to add route for create product in form action --}}
 
-<form action="/api/products" method="POST">
-    <label>Strain: </label>
-    <input type="text" name="strain">
-    <label>Price: </label>
-    <input type="number"  name="price">
-    <label>Quantity: </label>
-    <input type="text" name="packaging">
-    <label>Size &#40grams&#41: </label>
-    <input type="text" name="size">
-    <label>THC %: </label>
-    <input type="number" name="quantity">
-    <label>Packaging: </label>
-    <input type="text" name="thc">
-    <label>CBD %: </label>
-    <input type="text" name="cbd">
-    <label>Type: </label>
-    <input type="text" name="type">
-    <label>Strain Type: </label>
-    <input type="text" name="strain_type">
-    <label>Genetics: </label>
-    <input type="text" name="genetics">
-    <label>Flavor: </label>
-    <input type="text" name="flavor">
-    <label>Feelings: </label>
-    <input type="text" name="feelings">
-    <label>Alleviates: </label>
-    <input type="text" name="alleviates">
-    <label>Comments: </label>
-    <input type="text" name="comments">
-    <input type="submit" value="Save">
-</form>
+    <form action="/api/products" method="POST">
+      <label>Strain: </label>
+      <input type="text" name="strain" required>
+      <label>Price: </label>
+      <input type="number" step="0.01" name="price" required>
+      <label>Quantity: </label>
+      <input type="number" name="quantity" required>
+      <label>Size &#40grams&#41: </label>
+      <input type="text" name="size">
+      <label>THC %: </label>
+      <input type="text" name="thc">
+      <label>Packaging: </label>
+      <input type="text" name="packaging">
+      <label>CBD %: </label>
+      <input type="text" name="cbd">
+      <label>Type: </label>
+      <input type="text" name="type">
+      <label>Strain Type: </label>
+      <input type="text" name="strain_type">
+      <label>Genetics: </label>
+      <input type="text" name="genetics">
+      <label>Flavor: </label>
+      <input type="text" name="flavor">
+      <label>Feelings: </label>
+      <input type="text" name="feelings">
+      <label>Alleviates: </label>
+      <input type="text" name="alleviates">
+      <label>Comments: </label>
+      <input type="text" name="comments">
+      <input type="submit" class="save-btn" value="Save"><button class="home-btn">Go Back</button>
+    </form>
+  </div>
 </div>

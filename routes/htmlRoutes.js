@@ -1,62 +1,82 @@
-let db = require("../models");
+// Required dependencies and imports
+var ProductController = require("../controllers/productController");
+var SeedController = require("../controllers/seedController");
+var express = require("express");
+var passport = require("../config/passport");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+var router = express.Router();
 
-var ProductController = require("../controllers/productController")
+// Root route is set to login.handlebars
+router.get("/", function(req, res) {
+  res.render("login");
+});
 
-var SeedController = require("../controllers/seedController")
+// When authenticated, user is redirected to home.handlebars
+router.post("/", passport.authenticate("local"), function(req, res) {
+  res.redirect("/home");
+});
 
-module.exports = function(app) {
-  // Load index page
-  app.get("/", function(req, res) {
-      res.render("home", {
-        msg: "Welcome!",
-      });
-    });
+// Requires user to be authenticated access
+router.get("/signup", isAuthenticated, function(req, res) {
+  res.render("signup");
+});
 
-  app.get("/add-product", function(req, res) {
-      req.flash("info", "I got======= here")
-      res.render("partials/products/products-add");
+// Requires user to be authenticated to access
+router.get("/home", isAuthenticated, function(req, res) {
+  res.render("home", {
+    msg: "Welcome!"
   });
+});
 
-  app.get("/update-product/:productId", function(req, res) {
-    req.flash("info", "I gor======= here")
-    res.render("partials/products/products-update");
-    ProductController.getSingleProduct(req, res)
-  });
+// All routes with isAuthenticated require user to be authenticated to hit the API or acess the page
+router.get("/add-product", isAuthenticated, function(req, res) {
+  res.render("partials/products/products-add");
+});
 
-  app.get("/add-seed", function(req, res) {
-    req.flash("info", "I got======= here")
-    res.render("partials/seeds/seeds-add");
-  });
+// ===========================================================
+router.get(
+  "/update-product/:productId",
+  isAuthenticated,
+  ProductController.getSingleProduct
+);
+//============================================================
 
-  app.get("/update-seed/:seedId", function(req, res) {
-    req.flash("info", "I got======= here")
-    res.render("partials/seeds/seeds-update");
-    SeedController.getSingleSeed(req, res)
-  });
+router.get("/add-seed", isAuthenticated, function(req, res) {
+  res.render("partials/seeds/seeds-add");
+});
 
-  app.get("/search-product", function(req, res) {
-    req.flash("info", "I got======= here")
-    res.render("partials/products/products-search");
-  });
+router.get(
+  "/update-seed/:seedId",
+  isAuthenticated,
+  SeedController.getSingleSeed
+);
 
-  app.get("/search-seed", function(req, res) {
-    req.flash("info", "I got======= here")
-    res.render("partials/seeds/seeds-search");
-  });
+// ========================================================================
+// ===========================================================
 
-  app.get("/delete-seed/:seedId", function(req, res) {
-    SeedController.delete(req, res)
+router.put("/update-product/:productId");
+router.put("/update-seed/:seedId");
 
-  });
+//==========================================================================
+router.get("/search-product", isAuthenticated, function(req, res) {
+  res.render("partials/products/products-search");
+});
 
-    app.get("/home", function(req, res) {
-      res.render("home", {
-        msg: "Welcome!",
-      });
-    });
+router.get("/search-seed", isAuthenticated, function(req, res) {
+  res.render("partials/seeds/seeds-search");
+});
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
-};
+router.get("/delete-seed/:seedId", isAuthenticated, function(req, res) {
+  SeedController.delete(req, res);
+});
+
+router.get("/read", isAuthenticated, function(req, res) {
+  res.render("read-content", { layout: "read-frame" });
+});
+
+// Render 404 page for any unmatched routes
+router.get("*", function(req, res) {
+  res.render("404");
+});
+
+module.exports = router;

@@ -1,25 +1,17 @@
+// Required dependencies and imports
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-var session = require('express-session')
-var flash = require('connect-flash');
-var cookieParser = require('cookie-parser');
-
+var session = require("express-session");
+var flash = require("connect-flash");
+var cookieParser = require("cookie-parser");
+var passport = require("./config/passport");
 var db = require("./models");
-
 var app = express();
 var PORT = process.env.PORT || 8000;
 
 app.use(cookieParser());
 app.use(flash());
-app.use(session({ secret: 'keyboard', cookie: { maxAge: 60000 } }))
-
-
-// db.sequelize.sync({ force: true }).then(function () {
-//   app.listen(PORT, function () {
-//     console.log("Listening on port %s", PORT)
-//   });
-// });
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -35,12 +27,23 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Routes
-//Api Routes
-var apiRoutes = require('./routes/apiRoutes');
-app.use(apiRoutes);
+// We need to use sessions to keep track of our user's login status
+app.use(
+  session({
+    secret: "asjndbewjiujknajd83",
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
-require("./routes/htmlRoutes")(app);
+// Initializing passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+
+const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
+app.use(apiRoutes);
+app.use(htmlRoutes);
 
 let syncOptions = { force: false };
 
@@ -50,9 +53,9 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-// Starting the server, syncing our models------------------------------------/
-db.sequelize.sync(syncOptions).then(function () {
-  app.listen(PORT, function () {
+// Starting the server, syncing our models ------------------------------------/
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT

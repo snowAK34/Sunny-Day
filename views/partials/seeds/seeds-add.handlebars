@@ -1,33 +1,35 @@
-<div class="add-form">
-<h3>New Seed:</h3>
-{{!-- Need to add route for create product in form action --}}
-<form action="/api/seeds" method="POST">
-    <label>Strain: </label>
-    <input type="text" name="strain">
-    <label>Type: </label>
-    <input type="text" name="type">
-    <label>Quantity: </label>
-    <input type="number" name="quantity">
-    <label>THC %: </label>
-    <input type="text" name="thc">
-    <label>CBD %: </label>
-    <input type="text"  name="cbd">
-    <label>Strain Type: </label>
-    <input type="text" name="strain_type">
-    <label>Genetics: </label>
-    <input type="text" name="genetics">
-    <label>Flavor: </label>
-    <input type="text" name="flavor">
-    <label>Feelings: </label>
-    <input type="text" name="feelings">
-    <label>Alleviates: </label>
-    <input type="text" name="alleviates">
-    <label>Date Received: </label>
-    <input type="date" name="date">
-    <label>Company purchased from: </label>
-    <input type="text" name="company">
-    <label>Comments: </label>
-    <input type="text" name="comments">
-    <input type="submit" value="Save">
-</form>
+<div class="container">
+    <div class="add-form">
+        <h3>New Seed:</h3>
+        {{!-- Need to add route for create product in form action --}}
+        <form action="/api/seeds" method="POST">
+            <label>Strain: </label>
+            <input type="text" name="strain" required>
+            <label>Type: </label>
+            <input type="text" name="type">
+            <label>Quantity: </label>
+            <input type="number" name="quantity">
+            <label>THC %: </label>
+            <input type="text" name="thc">
+            <label>CBD %: </label>
+            <input type="text" name="cbd">
+            <label>Strain Type: </label>
+            <input type="text" name="strain_type">
+            <label>Genetics: </label>
+            <input type="text" name="genetics">
+            <label>Flavor: </label>
+            <input type="text" name="flavor">
+            <label>Feelings: </label>
+            <input type="text" name="feelings">
+            <label>Alleviates: </label>
+            <input type="text" name="alleviates">
+            <label>Date Received: </label>
+            <input type="date" name="date">
+            <label>Company purchased from: </label>
+            <input type="text" name="company">
+            <label>Comments: </label>
+            <input type="text" name="comments">
+            <input type="submit" class="save-btn" value="Save"><button class="home-btn">Go Back</button>
+        </form>
+    </div>
 </div>

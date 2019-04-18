@@ -2,17 +2,17 @@ body {
   margin: 0;
   box-sizing: border-box;
   background-image: url(../images/dawn-landscape.jpg);
-  background-color: #BED2A0;
+  background-color: #bed2a0;
   background-size: cover;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 /* Nav to create header for every page, included on main.handlebars */
 nav {
   background-color: white;
-  color: #68883B;
-  border-bottom: solid medium #68883B;
-  font-family: 'Merienda', cursive;
+  color: #68883b;
+  border-bottom: solid medium #68883b;
+  font-family: "Merienda", cursive;
 }
 
 h1 {
@@ -21,45 +21,94 @@ h1 {
 
 .row {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-#search-menu {
+#search-menu,
+#read-search-menu {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 30px auto 10px auto;
-  padding: 5px;
+  margin: auto;
 }
 
-#search-result {
-    background-color: white;
-    border: solid thin #68883B;
+mark {
+  background-color: white;
+}
+
+#auth-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 0.20;
+  color: white;
+}
+
+span {
+  text-shadow: -1px 1px black;
+}
+
+.search-result {
+  background-color: white;
+  border: solid thin #68883b;
+  padding: 10px;
+}
+
+#products-table_filter input, #seeds-table_filter input {
+  border: solid thin #75777a;
+  background-image: url(../images/Webp.net-resizeimage.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px; 
+  border-radius: 5px;
+  max-height: 25px;
+  padding-left: 25px;
+  width: 200px;
 }
 
 /* 4 buttons that make up menu on home page to search products, seeds, or add either */
-#products-btn, #add-product-btn, #seeds-btn, #add-seed-btn {
+#products-btn, #add-product-btn, #seeds-btn, #add-seed-btn, #read-products-btn, #read-seeds-btn, #update-product-btn, #delete-product-btn, #update-seed-btn, #delete-seed-btn, .home-btn, .save-btn {
   background-color: #BED2A0;
   color: #3D4C1E;
   border: solid medium #68883B;
   text-align: center;
   padding: 5px;
-  box-shadow: 0 4px #68883B;
+  box-shadow: 0 4px #68883b;
   border-radius: 5px;
-  margin: 20px auto 20px auto;
+  margin: auto;
 }
 
-#products-btn:active, #add-product-btn:active, #seeds-btn:active, #add-seed-btn:active {
+#products-btn:active, #add-product-btn:active, #seeds-btn:active, #add-seed-btn:active, #read-products-btn:active, #read-seeds-btn:active, #update-product-btn:active, #delete-product-btn:active, #update-seed-btn:active, #delete-seed-btn:active, .home-btn:active, .save-btn:active {
   box-shadow: 0 0px;
   transform: translateY(4px);
 }
 
-#products-btn:hover, #add-product-btn:hover, #seeds-btn:hover, #add-seed-btn:hover {
+#products-btn:hover, #add-product-btn:hover, #seeds-btn:hover, #add-seed-btn:hover, #read-products-btn:hover, #read-seeds-btn:hover, #update-product-btn:hover, #delete-product-btn:hover, #update-seed-btn:hover, #delete-seed-btn:hover, .home-btn:hover, .save-btn:hover {
   background-color: #2D5618;
   color: #B6CD7B;
 }
 
-.add-form {
+.add-form,
+.item-detail,
+#login-form,
+#signup-form {
   background-color: white;
+  padding: 10px;
+  margin: 20px auto 20px auto;
+}
+
+.addpink {
+  background-color: pink !important;
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+.fade {
+  opacity: 0.5;
+  font-style: italic;
+}
+
+#products-table, #seeds-table {
+  width: 100% !important;
 }
