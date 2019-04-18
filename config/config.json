@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "admin",
+    "username": "root",
     "password": null,
     "database": "budd_db",
     "host": "127.0.0.1",
