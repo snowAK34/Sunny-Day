@@ -1,3 +1,4 @@
+// Required dependencies and imports
 var express = require("express");
 var passport = require("passport");
 var db = require("../models");
@@ -7,13 +8,12 @@ var SeedController = require("../controllers/seedController");
 var validateProduct = require("../middlewares/validateProduct");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
+// If user is authenticated renderes home.handlebars
 router.post("/", passport.authenticate("local"), function(req, res) {
   res.render("home");
 });
 
-// Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-// how we configured our Sequelize User Model. If the user is created successfully, proceed to home page,
-// otherwise send back an error
+// Route for signing up a user, password is automatically hashed and stored securely, when successful the user is redirected to the signup page
 router.post("/api/signup", isAuthenticated, function(req, res) {
   db.User.create({
     email: req.body.email,
@@ -21,7 +21,7 @@ router.post("/api/signup", isAuthenticated, function(req, res) {
   })
     .then(function() {
       console.log("WORKS");
-      res.redirect("/home");
+      res.redirect("/signup");
     })
     .catch(function(err) {
       console.log(err);
@@ -29,21 +29,20 @@ router.post("/api/signup", isAuthenticated, function(req, res) {
     });
 });
 
-// Route for logging user out
+// Route for logging user out, ending authenticated session and routes to root route (login)
 router.get("/logout", function(req, res) {
   console.log("LOGGING OUT");
   req.logout();
   res.redirect("/");
 });
 
-// Route for getting some data about our user to be used client side
+// Route for getting some data about our user to be used client side, requires authentication
 router.get("/api/user_data", isAuthenticated, function(req, res) {
   if (!req.user) {
     // The user is not logged in, send back an empty object
     res.json({});
   } else {
     // Otherwise send back the user's email and id
-    // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
       id: req.user.id
@@ -51,6 +50,7 @@ router.get("/api/user_data", isAuthenticated, function(req, res) {
   }
 });
 
+// All routes with isAuthenticated will not be hit unless the user is authenticated, if not then they are routed back to the root route / as coded in isAuthenticated.js
 router.get("/home", isAuthenticated, function(req, res) {
   res.render("home");
 });
