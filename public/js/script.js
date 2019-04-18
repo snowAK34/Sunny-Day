@@ -31,9 +31,9 @@ $(document).ready(function () {
         },
         { data: "strain" },
         {
-          data: 'price',
+          data: "price",
           // formats price into currency format with $ and two decimal places (and commas if big enough)
-          render: $.fn.dataTable.render.number(',', '.', 2, '$')
+          render: $.fn.dataTable.render.number(",", ".", 2, "$")
         },
         { data: "quantity" },
         { data: "packaging" },
@@ -46,7 +46,7 @@ $(document).ready(function () {
   // ajax call to grab seed information
   $.get("/api/seeds", function (res) {
     $("#seeds-table").DataTable({
-      // adding red to row if qty is low
+      // adding pink to row if qty is low
       createdRow: function (row, data, dataIndex) {
         if (data.quantity < 6 && data.quantity > 0) {
           $(row).addClass("addpink");
