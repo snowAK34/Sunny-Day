@@ -129,7 +129,7 @@ The user then can access pages that require authentication through the middlewar
 
 Upon logout, the user is un-authenticated and is required to login to access authenticated pages.
 
-### API Details ***
+### API Details ###
 
 Authentication flow:
 1. User submits login form a POST request is sent resulting in execution of passport.authenticate middleware set up.
@@ -170,5 +170,6 @@ We would like to incorporate:
 - Checkout/Cart views need to be added, supporting payment method.
 - Email and/or database notification once an order has been placed by wholesalers.
 - Logging in with the incorrect password is unhandled,displays blank/error page.
-- 
+- Adding password reset via nodemailer, mongoose, MondoDB.
+
 # Sunny-Day
