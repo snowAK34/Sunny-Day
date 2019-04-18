@@ -9,6 +9,7 @@
             {{!-- needs to be editable --}}
         </form>
         <p>Packaging: {{product.packaging}}</p>
+        {{!-- special characters to render () in html --}}
         <p>Size &#40grams&#41: {{product.size}}</p>
         <p>THC %: {{product.thc}}</p>
         <p>CBD %: {{product.cbd}}</p>
@@ -19,8 +20,6 @@
         <p>Feelings: {{product.feelings}}</p>
         <p>Alleviates: {{product.alleviates}}</p>
         <p>Comments: {{product.comments}}</p>
-
-
 
         {{!-- Update "save" button --}}
         <button id="update-product-btn" data-price="{{product.price}}" data-quantity="{{product.quantity}}"
