@@ -8,7 +8,7 @@ const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 
-if (env === "development"){
+if (env === "development") {
   config.password = process.env.DB_PASS;
 }
 
