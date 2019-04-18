@@ -1,3 +1,4 @@
+// Required dependencies and imports
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
@@ -11,8 +12,6 @@ var PORT = process.env.PORT || 8000;
 
 app.use(cookieParser());
 app.use(flash());
-
-// app.use(session({ secret: "keyboard", cookie: { maxAge: 6000000 } }));
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -37,6 +36,7 @@ app.use(
   })
 );
 
+// Initializing passport and session
 app.use(passport.initialize());
 app.use(passport.session());
 

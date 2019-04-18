@@ -5,5 +5,6 @@ module.exports = function(req, res, next) {
     return next();
   }
   // If the user isn't logged in, redirect them to the login page -- root route
+  // Any page that is hit requiring authentication will redirect to the root rout
   return res.redirect("/");
 };

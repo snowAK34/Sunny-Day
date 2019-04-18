@@ -1,36 +1,34 @@
-let db = require("../models");
+// Required dependencies and imports
 var ProductController = require("../controllers/productController");
 var SeedController = require("../controllers/seedController");
-var path = require("path");
 var express = require("express");
 var passport = require("../config/passport");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 var router = express.Router();
 
+// Root route is set to login.handlebars
 router.get("/", function(req, res) {
   res.render("login");
 });
 
+// When authenticated, user is redirected to home.handlebars
 router.post("/", passport.authenticate("local"), function(req, res) {
   res.redirect("/home");
 });
 
+// Requires user to be authenticated access
 router.get("/signup", isAuthenticated, function(req, res) {
   res.render("signup");
 });
 
-router.get("/", function(req, res) {
-  res.render("login", {
-    msg: "Welcome!"
-  });
-});
-
+// Requires user to be authenticated to access
 router.get("/home", isAuthenticated, function(req, res) {
   res.render("home", {
     msg: "Welcome!"
   });
 });
 
+// All routes with isAuthenticated require user to be authenticated to hit the API or acess the page
 router.get("/add-product", isAuthenticated, function(req, res) {
   res.render("partials/products/products-add");
 });
