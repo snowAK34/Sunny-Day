@@ -46,7 +46,7 @@ h1 {
   padding: 10px;
 }
 
-#products-table_filter input {
+#products-table_filter input, #seeds-table_filter input {
   border: solid thin #75777a;
   background-image: url(../images/Webp.net-resizeimage.png);
   background-repeat: no-repeat;
