@@ -23,11 +23,9 @@ $(document).ready(function() {
           }
         },
         { data: "strain" },
-        { 
-          data: "price",
-          render: function ( data, type, row ) {
-            return '$'+ data;
-          }
+        {
+          data: 'price',
+          render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
         },
         { data: "quantity" },
         { data: "packaging" },
@@ -83,7 +81,6 @@ $(document).ready(function() {
     $("#products-table").hide();
     $("#seed-search-result").show();
     $("#seeds-table").show();
-    
   });
 
   $("#add-product-btn").on("click", function(event) {
