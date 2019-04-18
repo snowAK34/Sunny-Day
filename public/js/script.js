@@ -125,8 +125,8 @@ $(document).ready(function () {
 
   function editProd() {
 
-    let price = $('#price').val();
-    let quantity = $('#product-quantity').val();
+    let price = $("#price").val();
+    let quantity = $("#product-quantity").val();
     let id = $(this).data("id");
 
     let queryUrl = `/api/products/${id}`;
@@ -148,7 +148,7 @@ $(document).ready(function () {
 
   function editSeed() {
 
-    let quantity = $('#seed-quantity').val();
+    let quantity = $("#seed-quantity").val();
     let id = $(this).data("id");
 
     let queryUrl = `/api/seeds/${id}`;
