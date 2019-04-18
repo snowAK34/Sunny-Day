@@ -46,6 +46,17 @@ h1 {
   padding: 10px;
 }
 
+#products-table_filter input {
+  border: solid thin #75777a;
+  background-image: url(../images/Webp.net-resizeimage.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px; 
+  border-radius: 5px;
+  max-height: 25px;
+  padding-left: 25px;
+  width: 200px;
+}
+
 /* 4 buttons that make up menu on home page to search products, seeds, or add either */
 #products-btn, #add-product-btn, #seeds-btn, #add-seed-btn, #read-products-btn, #read-seeds-btn, #update-product-btn, #delete-product-btn, #update-seed-btn, #delete-seed-btn, .home-btn, .save-btn {
   background-color: #BED2A0;
