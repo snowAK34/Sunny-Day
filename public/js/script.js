@@ -6,9 +6,11 @@ $(document).ready(function () {
 
   $.get("/api/products", function (res) {
     $("#products-table").DataTable({
-      createdRow: function (row, data, dataIndex) {
+      createdRow: function(row, data, dataIndex) {
+        // adding pink to row if qty is low
         if (data.quantity < 50 && data.quantity > 0) {
           $(row).addClass("addpink");
+          // made italic and half opacity if inentory is equal to 0 or less than 0
         } else if (data.quantity <= 0) {
           $(row).addClass("fade");
         }
@@ -37,10 +39,11 @@ $(document).ready(function () {
 
   $.get("/api/seeds", function (res) {
     $("#seeds-table").DataTable({
-      // adding red to row if qty is low
-      createdRow: function (row, data, dataIndex) {
+      // adding pink to row if qty is low
+      createdRow: function(row, data, dataIndex) {
         if (data.quantity < 6 && data.quantity > 0) {
           $(row).addClass("addpink");
+          // made italic and half opacity if inentory is equal to 0 or less than 0
         } else if (data.quantity <= 0) {
           $(row).addClass("fade");
         }
@@ -88,7 +91,6 @@ $(document).ready(function () {
     event.preventDefault();
     // routes to add.handlebars with form to add product
     window.location.assign("/add-product");
-    // $.get("/add/product");
   });
 
   $("#add-seed-btn").on("click", function (event) {
@@ -98,7 +100,7 @@ $(document).ready(function () {
   });
 
   // Return to homepage button; used on both update-del pages
-  $(".home-btn").on("click", function (event) {
+  $(".home-btn").on("click", function(event) {
     event.preventDefault();
     // route to home.handlebars
     window.location.assign("/home");
