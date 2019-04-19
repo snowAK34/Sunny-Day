@@ -178,3 +178,4 @@ We would like to incorporate:
 - Email and/or database notification once an order has been placed by wholesalers.
 - Logging in with the incorrect password is unhandled,displays blank/error page.
 - Password reset with mongoose, nodemailer, and MongoDB.
+- Account lock after X failed attempts with incorrect password.
