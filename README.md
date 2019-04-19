@@ -87,7 +87,7 @@ The database is configured to support Budd's Sunny Day Growers MVP requirements.
 ### Functionality ###
  The database is connected to the front-end client using MVC framework. Specifically, the database is accessed through calls into the Controller as defined in the CONTROLLER API entry points defined above. In essence, both the Seed and Products tables support full CRUD operation through API(s).
 
-### API Details ***
+### API Details
 
 The code is separated into the following CONTROLLER main functions:
 
