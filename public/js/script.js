@@ -138,7 +138,7 @@ $(document).ready(function () {
         price: price,
         quantity: quantity
       },
-    }).then(window.location.href = "/home");
+    });
   };
 
 
@@ -159,7 +159,7 @@ $(document).ready(function () {
       data: {
         quantity: quantity
       },
-    }).then(window.location.href = "/home");
+    });
   };
 
 
@@ -204,4 +204,12 @@ $(document).ready(function () {
       }).then(window.location.href = "/home");
     };
   });
+
+  // initializes modals and routes back to home after the modal is closed
+    $(".modal").modal({
+      onCloseEnd: function() {
+        window.location.href = "/home"
+      }
+    });
+
 });
