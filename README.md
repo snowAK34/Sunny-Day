@@ -19,7 +19,6 @@ The application supports the following operations/features:
 5) Low inventory notification - order new inventory
 
 ## Built With ##
-- Bootstrap
 - JQuery
 - Passport Authentication
 - JavaScript
@@ -27,8 +26,6 @@ The application supports the following operations/features:
 - Model-View-Controller Framework
 - Handlebars
 - Sequelize
-- EsLint
-- Travis
 - MySQL
 - Heroku
 - Materialize
