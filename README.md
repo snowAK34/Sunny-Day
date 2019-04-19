@@ -58,43 +58,29 @@ On first instance, the user is requested to signin. There are three distinct typ
 
 
 ## Front End Design ##
-This code is responsible for all interaction with Users using the Model View Controller(MVC) framework. Users interact with the front end webpages which are routed to either of two controllers (Product or Seeds) depending on what inventory(Product or Seeds) the User has selected to view. The Controller(s) interface with the approriate Model(s) to query the database for inventory data. Once data is returned from the Model(s) to the Controller, the Controller routes the data back to the User through Views
+This code is responsible for all interaction with Users using the Model View Controller(MVC) framework. Users interact with the front end webpages which are routed to either of two controllers (Product or Seeds) depending on what inventory(Product or Seeds) the User has selected to view. The Controller(s) interface with the approriate Model(s) to query the database for inventory data. Once data is returned from the Model(s) to the Controller, the Controller routes the data back to the User through Views.
 
 ### API Details ###
 The code is broken into the following ROUTER main functions: 
 
 * Create:
-* router.post("/api/seeds", isAuthenticated, SeedController.addSeed) - Adds a seed to inventory
-* router.post("/api/products",isAuthenticated, ProductController.addProduct) - Adds a product to inventory
+  * router.post("/api/seeds", isAuthenticated, SeedController.addSeed) - Adds a seed to inventory
+  * router.post("/api/products",isAuthenticated, ProductController.addProduct) - Adds a product to inventory
+ 
 * Read:
-* router.get("/api/seeds/:seedID", isAuthenticated, SeedController.getAllSeed) - Get all seed inventory from DB
-* router.get("/api/seeds", isAuthenticated, SeedController.getSingleSeed)  - Get indiviual seed detail from DB
-* router.get("/api/product", isAuthenticated, SeedController.getAllProduct) - Get all product inventory from DB
-* router.get("/api/product/:productID", isAuthenticated, SeedController.getSingleProduct) Get individual product detail from DB
-* 
+  * router.get("/api/seeds/:seedID", isAuthenticated, SeedController.getAllSeed) - Get all seed inventory from DB
+  * router.get("/api/seeds", isAuthenticated, SeedController.getSingleSeed)  - Get indiviual seed detail from DB
+  * router.get("/api/product", isAuthenticated, SeedController.getAllProduct) - Get all product inventory from DB
+  * router.get("/api/product/:productID", isAuthenticated, SeedController.getSingleProduct) Get individual product detail from DB
+  
 * Update: 
-* router.put("/api/seeds/:productId", isAuthenticated, ProductController.update) - Update individual product in DB
-* router.put("/api/seeds/:seedId", isAuthenticated, SeedController.update) - Update individual seed in DB
+  * router.put("/api/seeds/:productId", isAuthenticated, ProductController.update) - Update individual product in DB
+  * router.put("/api/seeds/:seedId", isAuthenticated, SeedController.update) - Update individual seed in DB
+  
 * Delete:
-* router.delete("/api/seeds/:seedId", isAuthenticated, SeedController.delete) - Delete individual seed from DB
-* router.delete("/api/product/:productId", isAuthenticated, ProductController.delete) - Delete individual product from DB
+  * router.delete("/api/seeds/:seedId", isAuthenticated, SeedController.delete) - Delete individual seed from DB
+  * router.delete("/api/product/:productId", isAuthenticated, ProductController.delete) - Delete individual product from DB
 
-
-The code is broken into the following CONTROLLER main functions:
-* Create:
-* static addSeed(req,res) {.models.Seed.findOrCreate()} - Adds a seed to inventory
-* static addProduct(req,res) {.models.Product.findOrCreate()} - Adds a product to inventory * 
-* Read:
-* static getAllSeed(req, res) {models.Seed.findAll()}- Get all seed inventory from DB
-* static getSingleSeed(req,res){models.Seed.getSingleSeed()} - Get indiviual seed detail from DB
-* static getAllProduct(req, res) {models.Product.findAll()}- Get all product inventory from DB
-* static getSingleProduct(req,res){models.Product.getSingleProduct()} - Get indiviual seed detail from DB
-* Update: 
-* static update(req,res) {.models.Seed.findOne()} - updates a seed in inventory
-* static update(req,res) {.models.Product.findOne()} - updates a product in inventory
-* Delete:
-* static delete(req,res) {.models.Seed.findOne()} - deletes a seed in inventory
-* static delete(req,res) {.models.Product.findOne()} - updates a product in inventory
 
 ### What was learned:###
 
@@ -102,14 +88,35 @@ Stacy???
 
 
 ## Database Design ## 
-Jean???
+The database is configured to support Sunny Day Growers MVP requirements. Using mySQL, a database is created named "Budd.DB" containing the following tables - Products and Seeds. The Products tables contains columns required to track products for sale to Sunny Day Growers wholesale customers. The Seeds table is used by Sunny Day Growers to internally track the companies inventory of seeds, none of which will be sold externally.
+
+
 ### Functionality ###
-Entry Points - 
+ The database is connected to the front end client using MVC framework. Specifically the database is accessed through calls into the Controller as defined in the CONTROLLER API entry points defined above. In essence, both the Seed and Products tables support full CRUD operation through API(s).
 
 ### API Details ***
 
-### What was learned: ###
+The code is broken into the following CONTROLLER main functions:
 
+ * Create:
+   * static addSeed(req,res) {.models.Seed.findOrCreate()} - Adds a seed to inventory
+   * static addProduct(req,res) {.models.Product.findOrCreate()} - Adds a product to inventory 
+   
+* Read:
+  * static getAllSeed(req, res) {models.Seed.findAll()}- Get all seed inventory from DB
+  * static getSingleSeed(req,res){models.Seed.getSingleSeed()} - Get indiviual seed detail from DB
+  * static getAllProduct(req, res) {models.Product.findAll()}- Get all product inventory from DB
+  * static getSingleProduct(req,res){models.Product.getSingleProduct()} - Get indiviual seed detail from DB
+
+* Update: 
+  * static update(req,res) {.models.Seed.findOne()} - updates a seed in inventory
+  * static update(req,res) {.models.Product.findOne()} - updates a product in inventory
+
+* Delete:
+  * static delete(req,res) {.models.Seed.findOne()} - deletes a seed in inventory
+  * static delete(req,res) {.models.Product.findOne()} - updates a product in inventory
+
+### What was learned: ###
 
 ## Authentication Design ##
 This code is responsible for all the pages behind the root, the landing page which we currently set as the login page. Authentication on the app allows Sunny Day Growers data to be protected while allowing them to securely update their inventory and have it in an easily digestible format handled by the dashboard. Their data allows updates that then can be displayed realtime to external customers. All pages that relate to the API and database require authentication which means a non-authenticated user cannot hit their API, make changes to the database, or access protected pages.
@@ -170,6 +177,5 @@ We would like to incorporate:
 - Checkout/Cart views need to be added, supporting payment method.
 - Email and/or database notification once an order has been placed by wholesalers.
 - Logging in with the incorrect password is unhandled,displays blank/error page.
-- Adding password reset via nodemailer, mongoose, MondoDB.
-
-# Sunny-Day
+- Password reset with mongoose, nodemailer, and MongoDB.
+- Account lock after X failed attempts with incorrect password.

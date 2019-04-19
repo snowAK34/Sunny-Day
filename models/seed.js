@@ -41,8 +41,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     }
 
-  }, {timestamps: false});
-  Seed.associate = function(models) {
+  }, { timestamps: false });
+  Seed.associate = function (models) {
     // associations can be defined here
   };
   return Seed;

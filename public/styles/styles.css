@@ -56,6 +56,7 @@ span {
   padding: 10px;
 }
 
+/* format for datatables search input */
 #products-table_filter input, #seeds-table_filter input {
   border: solid thin #75777a;
   background-image: url(../images/Webp.net-resizeimage.png);
@@ -89,10 +90,7 @@ span {
   color: #B6CD7B;
 }
 
-.add-form,
-.item-detail,
-#login-form,
-#signup-form {
+.add-form, .item-detail, #login-form, #signup-form {
   background-color: white;
   padding: 10px;
   margin: 20px auto 20px auto;
