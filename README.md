@@ -78,11 +78,9 @@ The code is separated into the following ROUTER main functions:
   * router.delete("/api/seeds/:seedId", isAuthenticated, SeedController.delete) - Delete individual seed from DB
   * router.delete("/api/product/:productId", isAuthenticated, ProductController.delete) - Delete individual product from DB
 
-
-
+### What was learned:###
 •	Use of Datatables plugin for rendering data and how to customize the built-in features
 
-for 
 ## Database Design ## 
 The database is configured to support Budd's Sunny Day Growers MVP requirements. Using MySQL, a database is created named "Budd.DB" containing the following tables - Products and Seeds. The Products tables contains columns required to track products for sale to Budd's Sunny Day Growers wholesale customers. The Seeds table is used by Budd's Sunny Day Growers to internally track the company’s inventory of seeds, none of which will be sold externally.
 
@@ -136,7 +134,6 @@ The user then can access pages that require authentication through the middlewar
 Upon logout, the user is un-authenticated and is required to login to access authenticated pages.
 
 ### API Details ###
-
 Authentication flow:
 1. User submits login form a POST request is sent resulting in execution of passport.authenticate middleware set up.
 2. As the authenticate middleware for that route is configured to handle the local strategy, passport will invoke our implementation of the local strategy (local strategy is a module that lets you authenticate using a username and password in Node.js applications).
@@ -164,7 +161,6 @@ Rundown of Passport methods and Middleware:
 * The ability to incorporate Passport authentication to a project protecting the remaining application web pages from unathorized access. 
 * Ability to set values for authentication, ability to scale: setting different permissions like user vs superusers, resticted access based on "role". 
 
-
 # Takeaway
 The application is functional as built and meets the initial MVP specified by Budd's Sunny Day Growers. 
 
@@ -176,6 +172,3 @@ We would like to incorporate:
 - Integrate Sunny Day app with main website hosted on GoDaddy 
 - Email and/or database notification once an order has been placed by dispensaries.
 - Logging in with the incorrect password is unhandled, displays blank/error page.
-
-
-# Sunny-Day
