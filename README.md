@@ -78,7 +78,7 @@ The code is separated into the following ROUTER main functions:
   * router.delete("/api/seeds/:seedId", isAuthenticated, SeedController.delete) - Delete individual seed from DB
   * router.delete("/api/product/:productId", isAuthenticated, ProductController.delete) - Delete individual product from DB
 
-### What was learned:###
+### What was learned:
 •	Use of Datatables plugin for rendering data and how to customize the built-in features
 
 ## Database Design ## 
@@ -111,9 +111,6 @@ The code is separated into the following CONTROLLER main functions:
 
 ### What was learned: ###
   * Although the customer’s actual data will not be uploaded until after the project is complete, migration files were set up to allow smooth transfer of data later.
-
-### What was learned:###
-* The ability to incorporate Passport authentication to a project protecting the remaining application web pages from unauthorized access. 
 
 ## Authentication Design ##
 This code is responsible for all the pages behind the root, the landing page which we currently set as the login page. Authentication on the app allows Sunny Day Growers data to be protected while allowing them to securely update their inventory and have it in an easily digestible format handled by the dashboard. Their data allows updates that then can be displayed realtime to external customers. All pages that relate to the API and database require authentication which means a non-authenticated user cannot hit their API, make changes to the database, or access protected pages.
