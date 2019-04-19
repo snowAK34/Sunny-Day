@@ -18,10 +18,18 @@
         <p>Company Purchased From: {{seed.company}}</p>
         <p>Comments: {{seed.comments}}</p>
 
-
+    <!-- Modal Structure -->
+    <div id="modalS" class="modal">
+        <div class="modal-content">
+            <h4>{{seed.strain}} has been updated!</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
 
         {{!-- Update "save" buttons --}}
-        <button id="update-seed-btn" data-quantity="{{seed.quantity}}" data-id="{{seed.id}}">Save</button>
+        <button id="update-seed-btn" data-quantity="{{seed.quantity}}" data-id="{{seed.id}}" data-target="modalS" class="modal-trigger">Save</button>
         {{!-- Go Back "home" button --}}
         <button class="home-btn">Go Back</button>
         {{!-- Delete button --}}

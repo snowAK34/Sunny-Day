@@ -21,9 +21,19 @@
         <p>Alleviates: {{product.alleviates}}</p>
         <p>Comments: {{product.comments}}</p>
 
+    <!-- Modal Structure -->
+    <div id="modalP" class="modal">
+        <div class="modal-content">
+            <h4>{{product.strain}} has been updated!</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
         {{!-- Update "save" button --}}
         <button id="update-product-btn" data-price="{{product.price}}" data-quantity="{{product.quantity}}"
-            data-id="{{product.id}}">Save</button>
+            data-id="{{product.id}}" data-target="modalP" class="modal-trigger">Save</button>
         {{!-- Go Back "home" button --}}
         <button class="home-btn">Go Back</button>
         {{!-- Delete button --}}
